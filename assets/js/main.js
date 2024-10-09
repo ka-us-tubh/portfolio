@@ -87,7 +87,7 @@ terminalCommand.addEventListener('keydown', function(event) {
 
         switch (command) {
             case 'help':
-                response = 'Available commands: help, date, echo, clear, shutdown, ls, info, skill, project, experience';
+                response = 'Available commands: help, date, echo, clear, ls, info, skill, project, experience';
                 break;
             case 'ls':
                 response = 'resume.pdf<br>project_list.html<br>Documents<br>Downloads';
@@ -123,10 +123,6 @@ terminalCommand.addEventListener('keydown', function(event) {
             response = `Projects: ${devInfo.projects.join(', ')}.`;
             break;
 
-            case 'shutdown':
-                response = 'Shutting down...';
-                setTimeout(() => window.close(), 2000);
-                break;
             default:
                 if (command.startsWith('echo ')) {
                     response = command.slice(5);
