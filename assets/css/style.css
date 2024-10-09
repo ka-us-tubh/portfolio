@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap');
+
+:root {
+    --color-body:#c9d6e1;
+    --color-heading: #ADD8E6;
+    --color-base: #162e41;
+    --color-base2: #1c2331;
+    --color-brand:  #58ffde;
+    --color-brand2: #ff8080;
+    --sidbar-width: 240px;
+    --font-base: "Bai Jamjuree";
+}
+
+body {
+    background-color: var(--color-base2);
+    color: var(--color-body);
+    font-family: var(--font-base), sans-serif;
+ 
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: var(--color-heading);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-body);
+    transition: all 0.4s ease;
+}
+
+a:hover {
+    color: var(--color-brand);
+}
+
+img {
+    width: 100%;
+}
+
+.text-brand {
+    color: var(--color-brand);
+}
+
+.bg-base {
+    background-color: var(--color-base);
+}
+
+.full-height {
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    border-bottom: 2px solid rgba(255,255,255, 0.1);
+}
+
+.shadow-effect {
+    transition: all 0.5s;
+}
+
+.shadow-effect:hover {
+    box-shadow: -6px 6px 0 0 var(--color-brand);
+}
+
+.iconbox {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    background-color: var(--color-brand);
+    color: var(--color-base);
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: var(--color-base);
+}
+
+.navbar .nav-link {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.navbar .nav-link:hover {
+    color: var(--color-brand);
+}
+
+.navbar .nav-link.active {
+    color: var(--color-brand);
+}
+
+@media (min-width: 992px) {
+    .navbar {
+        min-height: 100vh;
+        width: var(--sidbar-width);
+        background: linear-gradient(rgb(25 189 210 / 80%),rgb(9 31 33 / 80%)), url(../images/sidebar-img.png);
+        background-size: cover;
+        background-position: center;
+    }
+
+    .navbar-brand img {
+        border: 8px solid var(--color-brand);
+    }
+
+    /* CONTENT WRAPPER */
+    #content-wrapper {
+        padding-left: var(--sidbar-width);
+    }
+}
+
+/* BTN */
+.btn {
+    padding: 12px 28px;
+    font-weight: 700;
+}
+
+.btn-brand {
+    background-color: var(--color-brand);
+    border-color: var(--color-brand);
+    color: var(--color-base);
+}
+
+.btn-brand:hover,
+.btn-brand:focus {
+    background-color: var(--color-brand2);
+    color: var(--color-base);
+    border-color: var(--color-brand2);
+}
+
+.link-custom {
+    font-weight: 700;
+    position: relative;
+}
+
+.link-custom::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-brand);
+    position: absolute;
+    left: 0;
+    top: 110%;
+    transition: all 0.4s;
+}
+
+.link-custom:hover::after {
+    width: 100%;
+}
+
+/* CARD */
+.card-custom .card-custom-image {
+    overflow: hidden;
+}
+
+.card-custom .card-custom-image img {
+    transition: all 0.4s ease;
+}
+
+.card-custom:hover .card-custom-image img {
+    transform: scale(1.1);
+}
+
+/* CONTACT */
+#contact .form-control {
+    background-color: var(--color-base);
+    border-color: var(--color-base);
+    color: var(--color-body);
+}
+
+#contact .form-control:focus {
+    border-color: var(--color-brand);
+    box-shadow: none;
+}
+
+#contact .form-control::placeholder {
+    color: var(--color-body);
+}
+
+#contact input.form-control {
+    height: 44px;
+}
+
+/* SOCIAL ICONS */
+.social-icons {
+
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-base);
+    border-radius: 100px;
+    font-size: 24px;
+}
+
+.setup {
+    font-family: 'Courier New', monospace;
+    position: relative;
+    width: 800px;
+    height: 600px;
+}
+.crt-frame {
+    width: 640px;
+    height: 480px;
+    background-color: #e0d4b4; /* Yellowed plastic color */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    border:5px solid  #e37587;
+}
+.crt-screen {
+    width: 100%;
+    height: 90%;
+    background-color: #008080; 
+    /* Classic teal desktop color */
+    overflow: hidden;
+    position: relative;
+    border: 2px solid black;
+}
+.crt-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%),
+        linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+}
+.screen-gloss {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%);
+    /* transform: rotate(-45deg); */
+    pointer-events: none;
+}
+.scanline {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0) 48%,
+        rgba(0,0,0,0.02) 50%,
+        rgba(255,255,255,0) 52%,
+        rgba(255,255,255,0) 100%);
+    background-size: 100% 4px;
+    animation: scanline 10s linear infinite;
+}
+@keyframes scanline {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+.desktop {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.desktop-icon:hover {
+    transform: scale(1.1);
+}
+.icon-image {
+    width: 32px;
+    height: 32px;
+    background-color: #c3c3c3;
+    border: 2px solid #000;
+    margin-bottom: 5px;
+}
+.taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background-color: #c3c3c3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+.start-button {
+    background-color: #008080;
+    color: white;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: 1px solid #000;
+    /* cursor: pointer; */
+}
+.taskbar-clock {
+    color: black;
+    font-weight: bold;
+}
+.terminal-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 60%;
+    background-color: #000;
+    border: 3px solid #c3c3c3;
+    display: none;
+}
+.terminal {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.terminal-content {
+    margin-bottom: 10px;
+}
+.terminal-input {
+    display: flex;
+}
+.terminal-input span {
+    margin-right: 5px;
+}
+#terminal-command {
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+}
+/* .keyboard {
+    width: 700px;
+    height: 40px;
+    background-color: #d0c4a4;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+.monitor-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 87%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+.monitor-button {
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    background-color:gray;
+    border-radius: 50%;
+    /* cursor: pointer; */
+}
+.window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 60%;
+    background-color:rgb(233, 232, 232);
+    border: 3px solid #c3c3c3;
+    display: none;
+}
+.window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #c3c3c3;
+    padding: 5px;
+    cursor: move;
+}
+.window-header h3 {
+    margin: 0;
+    color: black;
+    font-size: 14px;
+}
+.window-buttons {
+    display: flex;
+    gap: 5px;
+}
+.window-button {
+    width: 14px;
+    height: 14px;
+    background-color: red;
+    cursor: pointer;
+}
+.window-button.maximize {
+    background-color: green;
+}
+.window-content {
+    width: 100%;
+    height: calc(100% - 30px);
+    padding: 10px;
+    box-sizing: border-box;
+    color:black;
+    overflow-y: auto;
+}
