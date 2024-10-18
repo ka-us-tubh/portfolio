@@ -22,7 +22,6 @@ const clockElement = document.getElementById('taskbar-clock');
 const devInfo = {
 name: 'Kaustubh Gupta',
 profession: 'B.Tech in Computer Science & Info. Tech. Student',
-contact: '+918840138462',
 email: 'kaustubhg10@gmail.com',
 portfolio: 'ka-us-tubh.github.io/portfolio',
 skills: [
@@ -103,7 +102,6 @@ terminalCommand.addEventListener('keydown', function(event) {
             response = `
                             Name: ${devInfo.name}<br>
                             Profession: ${devInfo.profession}<br>
-                            Contact: ${devInfo.contact}<br>
                             Email: ${devInfo.email}
                                                 `;
             break;
