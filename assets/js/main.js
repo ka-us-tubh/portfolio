@@ -14,6 +14,32 @@ AOS.init({
 
 });
 
+const themeToggle = document.getElementById('theme-toggle');
+const themeToggleText = document.querySelector('.theme-toggle-text');
+
+function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('portfolio-theme', theme);
+
+    if (themeToggleText) {
+        themeToggleText.textContent = theme === 'dark' ? 'Light' : 'Dark';
+    }
+
+    if (themeToggle) {
+        themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+    }
+}
+
+if (themeToggle) {
+    const initialTheme = document.documentElement.dataset.theme || 'light';
+    setTheme(initialTheme);
+
+    themeToggle.addEventListener('click', function() {
+        const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        setTheme(nextTheme);
+    });
+}
+
 const terminalOutput = document.getElementById('terminal-output');
 const terminalCommand = document.getElementById('terminal-command');
 const terminalWindow = document.querySelector('.terminal-window');
