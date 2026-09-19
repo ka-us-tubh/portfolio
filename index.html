@@ -21,48 +21,79 @@
 
 <body>
 
-  <!-- ===================== NAVBAR ===================== -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a class="nav-brand" href="#home">KG<span>.</span></a>
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
 
-      <ul class="nav-links" role="list">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#workspace">Setup</a></li>
-      </ul>
+    <!-- Brand -->
+    <a class="sidebar-brand" href="#home">KG<span>.</span></a>
 
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
-        <!-- Sun icon (shown in dark mode) -->
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    <!-- Nav links -->
+    <nav class="sidebar-nav">
+      <a href="#home"      class="sidebar-link" data-section="home">
+        <span class="sidebar-link-icon"><i class="las la-home" aria-hidden="true"></i></span>
+        <span class="sidebar-link-text">Home</span>
+      </a>
+      <a href="#work"      class="sidebar-link" data-section="work">
+        <span class="sidebar-link-icon"><i class="las la-layer-group" aria-hidden="true"></i></span>
+        <span class="sidebar-link-text">Work</span>
+      </a>
+      <a href="#about"     class="sidebar-link" data-section="about">
+        <span class="sidebar-link-icon"><i class="las la-user" aria-hidden="true"></i></span>
+        <span class="sidebar-link-text">About</span>
+      </a>
+      <a href="#workspace" class="sidebar-link" data-section="workspace">
+        <span class="sidebar-link-icon"><i class="las la-desktop" aria-hidden="true"></i></span>
+        <span class="sidebar-link-text">Setup</span>
+      </a>
+    </nav>
+
+    <!-- Spacer -->
+    <div class="sidebar-spacer"></div>
+
+    <!-- Theme toggle -->
+    <button class="sidebar-theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <span class="sidebar-theme-text">Dark</span>
+    </button>
+
+    <!-- Mobile hamburger (sits inside sidebar slot on small screens) -->
+    <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </aside>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-drawer" id="nav-mobile" role="dialog" aria-label="Mobile navigation">
+    <div class="mobile-drawer-inner">
+      <a href="#home"      onclick="closeMobileNav()"><i class="las la-home"></i> Home</a>
+      <a href="#work"      onclick="closeMobileNav()"><i class="las la-layer-group"></i> Work</a>
+      <a href="#about"     onclick="closeMobileNav()"><i class="las la-user"></i> About</a>
+      <a href="#workspace" onclick="closeMobileNav()"><i class="las la-desktop"></i> Setup</a>
+      <div class="mobile-drawer-divider"></div>
+      <button class="mobile-theme-btn" id="mobile-theme-toggle" type="button">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
-        <!-- Moon icon (shown in light mode) -->
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
-        <span class="theme-toggle-text">Dark</span>
-      </button>
-
-      <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+        <span class="sidebar-theme-text">Dark mode</span>
       </button>
     </div>
-  </nav>
-
-  <!-- Mobile nav overlay -->
-  <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile navigation">
-    <a href="#home"      onclick="closeMobileNav()">Home</a>
-    <a href="#skills"    onclick="closeMobileNav()">Skills</a>
-    <a href="#work"      onclick="closeMobileNav()">Work</a>
-    <a href="#about"     onclick="closeMobileNav()">About</a>
-    <a href="#workspace" onclick="closeMobileNav()">Setup</a>
   </div>
 
   <!-- ===================== PAGE ===================== -->
@@ -85,7 +116,7 @@
             </p>
           </div>
           <div class="hero-actions">
-            <a href="#work" class="btn btn-primary">Explore Work</a>
+          <a href="#work" class="btn btn-primary">Explore Work</a>
             <a href="resume_kaustubh.pdf" class="btn btn-outline" target="_blank" rel="noopener">Resume ↗</a>
           </div>
         </div>
@@ -138,103 +169,6 @@
         <div class="bento-card dark home-cta" data-aos="fade-up" data-aos-delay="300">
           <p class="cta-title">Let's build something together</p>
           <a href="mailto:kaustubhg10@gmail.com" class="btn btn-white">Get in touch</a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========== SKILLS ========== -->
-    <section id="skills">
-      <span class="section-label">Skills</span>
-      <h2 class="section-title">What I work with</h2>
-
-      <div class="skills-bento">
-
-        <!-- Backend -->
-        <div class="bento-card skill-card wide" data-aos="fade-up">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div class="skill-icon">⚙️</div>
-            <h5>Backend Engineering</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">FastAPI</span>
-            <span class="skill-tag">REST APIs</span>
-            <span class="skill-tag">MySQL</span>
-            <span class="skill-tag">Docker</span>
-          </div>
-        </div>
-
-        <!-- ML -->
-        <div class="bento-card skill-card wide" data-aos="fade-up" data-aos-delay="80">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div class="skill-icon">📊</div>
-            <h5>Machine Learning</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Scikit-learn</span>
-            <span class="skill-tag">Pandas</span>
-            <span class="skill-tag">NumPy</span>
-            <span class="skill-tag">Matplotlib</span>
-            <span class="skill-tag">Seaborn</span>
-          </div>
-        </div>
-
-        <!-- Deep Learning -->
-        <div class="bento-card dark skill-card narrow" data-aos="fade-up" data-aos-delay="120">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div class="skill-icon">🧠</div>
-            <h5>Deep Learning</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">Keras</span>
-            <span class="skill-tag">OpenCV</span>
-            <span class="skill-tag">CNNs</span>
-          </div>
-        </div>
-
-        <!-- Gen/Agentic AI -->
-        <div class="bento-card brand skill-card narrow" data-aos="fade-up" data-aos-delay="160">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div class="skill-icon" style="background:rgba(255,255,255,0.2);border:none;">🤖</div>
-            <h5>Gen &amp; Agentic AI</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">LLMs</span>
-            <span class="skill-tag">LangChain</span>
-            <span class="skill-tag">LangGraph</span>
-            <span class="skill-tag">Hugging Face</span>
-            <span class="skill-tag">RAG</span>
-          </div>
-        </div>
-
-        <!-- Frontend -->
-        <div class="bento-card skill-card narrow" data-aos="fade-up" data-aos-delay="200">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div class="skill-icon">🎨</div>
-            <h5>Frontend</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">ReactJS</span>
-            <span class="skill-tag">Tailwind CSS</span>
-            <span class="skill-tag">HTML</span>
-            <span class="skill-tag">JavaScript</span>
-          </div>
-        </div>
-
-        <!-- Quantum computing mini card -->
-        <div class="bento-card dark skill-card narrow" data-aos="fade-up" data-aos-delay="240">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div class="skill-icon">⚛️</div>
-            <h5>Quantum Computing</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Qiskit</span>
-            <span class="skill-tag">QHED</span>
-            <span class="skill-tag">QML</span>
-          </div>
         </div>
 
       </div>
@@ -370,16 +304,16 @@
       </div>
     </section>
 
-    <!-- ========== ABOUT ========== -->
+    <!-- ========== ABOUT + SKILLS ========== -->
     <section id="about">
       <span class="section-label">About</span>
-      <h2 class="section-title">Education &amp; Experience</h2>
+      <h2 class="section-title">Background &amp; Skills</h2>
 
       <div class="about-bento">
 
         <!-- Experience — large card -->
         <div class="bento-card dark about-card wide" data-aos="fade-up">
-          <div class="about-card-icon">💼</div>
+          <div class="about-card-icon"><i class="las la-briefcase" aria-hidden="true"></i></div>
           <p class="about-card-label">Experience</p>
           <p class="about-card-title">AI Engineer</p>
           <p class="about-card-sub">Tata Consultancy Services · BFSI R&amp;I</p>
@@ -411,7 +345,7 @@
 
         <!-- Education -->
         <div class="bento-card about-card half" data-aos="fade-up" data-aos-delay="100">
-          <div class="about-card-icon">🎓</div>
+          <div class="about-card-icon"><i class="las la-graduation-cap" aria-hidden="true"></i></div>
           <p class="about-card-label">Education</p>
           <p class="about-card-title">B.Tech — Computer Science</p>
           <p class="about-card-sub">KIET Group of Institutions · 2020 – 2024</p>
@@ -420,13 +354,105 @@
 
         <!-- Interests -->
         <div class="bento-card about-card half" data-aos="fade-up" data-aos-delay="140">
-          <div class="about-card-icon">🔬</div>
+          <div class="about-card-icon"><i class="las la-flask" aria-hidden="true"></i></div>
           <p class="about-card-label">Research Interests</p>
           <p class="about-card-title">What excites me</p>
           <p class="about-card-desc">
             Generative AI &amp; LLMs · Agentic Systems · Quantum Machine Learning ·
             Recommendation Systems · Reinforcement Learning
           </p>
+        </div>
+
+        <!-- ── Skills sub-section ── -->
+        <div class="about-skills-divider" data-aos="fade-up">
+          <span>Skills</span>
+        </div>
+
+        <!-- Backend -->
+        <div class="bento-card skill-card wide" data-aos="fade-up">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="las la-server" aria-hidden="true"></i></div>
+            <h5>Backend Engineering</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+        </div>
+
+        <!-- ML -->
+        <div class="bento-card skill-card wide" data-aos="fade-up" data-aos-delay="60">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="las la-chart-bar" aria-hidden="true"></i></div>
+            <h5>Machine Learning</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+          </div>
+        </div>
+
+        <!-- Deep Learning -->
+        <div class="bento-card dark skill-card narrow" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="las la-brain" aria-hidden="true"></i></div>
+            <h5>Deep Learning</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Keras</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">CNNs</span>
+          </div>
+        </div>
+
+        <!-- Gen/Agentic AI -->
+        <div class="bento-card brand skill-card narrow" data-aos="fade-up" data-aos-delay="140">
+          <div class="skill-card-header">
+            <div class="skill-icon" style="background:rgba(255,255,255,0.18);border:none;"><i class="las la-robot" aria-hidden="true"></i></div>
+            <h5>Gen &amp; Agentic AI</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">LLMs</span>
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">LangGraph</span>
+            <span class="skill-tag">Hugging Face</span>
+            <span class="skill-tag">RAG</span>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="bento-card skill-card narrow" data-aos="fade-up" data-aos-delay="180">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="las la-code" aria-hidden="true"></i></div>
+            <h5>Frontend</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">ReactJS</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <!-- Quantum Computing -->
+        <div class="bento-card dark skill-card narrow" data-aos="fade-up" data-aos-delay="220">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="las la-atom" aria-hidden="true"></i></div>
+            <h5>Quantum Computing</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Qiskit</span>
+            <span class="skill-tag">QHED</span>
+            <span class="skill-tag">QML</span>
+          </div>
         </div>
 
       </div>

@@ -13,35 +13,34 @@ AOS.init({
 });
 
 // ── Theme toggle ─────────────────────────────
-const themeToggle    = document.getElementById('theme-toggle');
-const themeToggleText = document.querySelector('.theme-toggle-text');
+const themeToggle     = document.getElementById('theme-toggle');
+const mobileThemeBtn  = document.getElementById('mobile-theme-toggle');
+const themeTexts      = document.querySelectorAll('.sidebar-theme-text');
 
 function setTheme(theme) {
   document.documentElement.dataset.theme = theme;
   localStorage.setItem('portfolio-theme', theme);
-
-  if (themeToggleText) {
-    // Button always shows what clicking will switch TO
-    themeToggleText.textContent = theme === 'dark' ? 'Light' : 'Dark';
-  }
-
-  if (themeToggle) {
-    themeToggle.setAttribute(
-      'aria-label',
-      `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`
-    );
-  }
+  // Update all theme-text labels (sidebar + mobile drawer)
+  themeTexts.forEach((el) => {
+    el.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+  });
+  const label = `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`;
+  themeToggle?.setAttribute('aria-label', label);
+  mobileThemeBtn?.setAttribute('aria-label', label);
 }
 
-// Sync text with whatever was set by the inline script on <html>
+// Sync on load
 setTheme(document.documentElement.dataset.theme || 'light');
 
 themeToggle?.addEventListener('click', () => {
-  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  setTheme(next);
+  setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
 });
 
-// ── Mobile nav ───────────────────────────────
+mobileThemeBtn?.addEventListener('click', () => {
+  setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+});
+
+// ── Mobile drawer ─────────────────────────────
 const hamburger  = document.getElementById('nav-hamburger');
 const mobileNav  = document.getElementById('nav-mobile');
 
@@ -58,52 +57,44 @@ function closeMobileNav() {
 }
 
 hamburger?.addEventListener('click', () => {
-  const isOpen = mobileNav.classList.contains('open');
-  isOpen ? closeMobileNav() : openMobileNav();
+  mobileNav.classList.contains('open') ? closeMobileNav() : openMobileNav();
 });
 
-// Close on outside click
-document.addEventListener('click', (e) => {
-  if (
-    mobileNav.classList.contains('open') &&
-    !mobileNav.contains(e.target) &&
-    !hamburger.contains(e.target)
-  ) {
-    closeMobileNav();
-  }
+// Close on backdrop click (outside the inner panel)
+mobileNav?.addEventListener('click', (e) => {
+  if (!e.target.closest('.mobile-drawer-inner')) closeMobileNav();
 });
 
-// Expose to inline onclick handlers in HTML
 window.closeMobileNav = closeMobileNav;
 
 // ── Active nav link on scroll ─────────────────
-const sections   = document.querySelectorAll('section[id]');
-const navAnchors = document.querySelectorAll('.nav-links a');
+const sections    = document.querySelectorAll('section[id]');
+const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
 function updateActiveLink() {
-  const scrollY = window.scrollY + 100;
+  const scrollY = window.scrollY + 120;
   let current = '';
 
   sections.forEach((sec) => {
     if (scrollY >= sec.offsetTop) current = sec.id;
   });
 
-  navAnchors.forEach((a) => {
-    a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
+  sidebarLinks.forEach((a) => {
+    a.classList.toggle('active', a.dataset.section === current);
   });
 }
 
 window.addEventListener('scroll', updateActiveLink, { passive: true });
 updateActiveLink();
 
-// ── Navbar background on scroll ──────────────
-const navbar = document.querySelector('.navbar');
+// ── Sidebar shadow on scroll ──────────────────
+const sidebar = document.querySelector('.sidebar');
 
-function updateNavbar() {
-  navbar?.classList.toggle('scrolled', window.scrollY > 20);
+function updateSidebar() {
+  sidebar?.classList.toggle('scrolled', window.scrollY > 20);
 }
 
-window.addEventListener('scroll', updateNavbar, { passive: true });
+window.addEventListener('scroll', updateSidebar, { passive: true });
 
 // ── Retro CRT — taskbar clock ─────────────────
 const clockEl = document.getElementById('taskbar-clock');
