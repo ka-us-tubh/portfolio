@@ -19,8 +19,8 @@
     --accent-yellow:#f5c518;
     --accent-blue:  #3b82f6;
     --accent-purple:#8b5cf6;
-    --border:       rgba(0,0,0,0.08);
-    --border-strong:rgba(0,0,0,0.14);
+    --border:       rgba(0,0,0,0.55);
+    --border-strong:rgba(0,0,0,0.75);
     --shadow-sm:    0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
     --shadow-md:    0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
     --shadow-lg:    0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
@@ -50,8 +50,8 @@
     --accent-yellow:#ffd23f;
     --accent-blue:  #60a5fa;
     --accent-purple:#a78bfa;
-    --border:       rgba(255,255,255,0.07);
-    --border-strong:rgba(255,255,255,0.12);
+    --border:       rgba(255,255,255,0.55);
+    --border-strong:rgba(255,255,255,0.75);
     --shadow-sm:    0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
     --shadow-md:    0 4px 16px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.2);
     --shadow-lg:    0 12px 40px rgba(0,0,0,0.45), 0 4px 12px rgba(0,0,0,0.25);
@@ -321,7 +321,7 @@ section { padding: 80px 0; }
 
 .bento-card.dark {
     background: var(--bg-dark-card);
-    border-color: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.22);
 }
 
 .bento-card.brand {
