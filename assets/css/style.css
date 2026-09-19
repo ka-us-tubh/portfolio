@@ -263,9 +263,8 @@ p { color: var(--text-secondary); line-height: 1.7; }
    PAGE WRAPPER
    ============================================= */
 .page {
-    margin-left: calc(16px + 72px + 16px); /* sidebar left + sidebar width + gap */
-    max-width: 1100px;
-    padding: 40px 32px 80px;
+    margin-left: calc(16px + 72px + 20px); /* sidebar left(16) + width(72) + gap(20) */
+    padding: 40px 24px 80px;
 }
 
 section { padding: 80px 0; }
@@ -352,22 +351,26 @@ section { padding: 80px 0; }
     padding-top: 20px;
 }
 
+/* 
+  Grid uses 3 equal columns — each card specifies how many it spans.
+  All rows are auto-height so content drives height, no empty gaps.
+*/
 .home-bento {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
     gap: 16px;
 }
 
-/* Hero card — name + intro */
+/* Row 1: Hero (2 cols) + ID card (1 col, 2 rows tall) */
 .home-hero {
-    grid-column: span 8;
-    grid-row: span 2;
-    padding: 48px 44px;
+    grid-column: span 2;
+    grid-row: span 1;
+    padding: 40px 40px 36px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 340px;
+    min-height: 300px;
     position: relative;
     overflow: hidden;
 }
@@ -384,20 +387,20 @@ section { padding: 80px 0; }
 }
 
 .hero-greeting {
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 700;
     color: var(--brand);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .hero-name {
-    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
     font-weight: 800;
     line-height: 1.05;
     letter-spacing: -0.03em;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .hero-name em {
@@ -406,10 +409,9 @@ section { padding: 80px 0; }
 }
 
 .hero-bio {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
-    max-width: 520px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     line-height: 1.7;
 }
 
@@ -419,19 +421,97 @@ section { padding: 80px 0; }
     flex-wrap: wrap;
 }
 
-/* Photo card */
+/* ID card photo — 1 col wide, spans 2 rows */
 .home-photo {
-    grid-column: span 4;
+    grid-column: span 1;
     grid-row: span 2;
-    min-height: 340px;
-    overflow: visible !important; /* allow lanyard to hang above */
+    overflow: visible !important;
     border-radius: var(--radius-lg);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 16px 16px;
+    padding: 24px 20px 20px;
     background: var(--bg-card-alt) !important;
+}
+
+/* Row 2: Status (1 col) + Location (1 col) — ID card continues */
+.home-status {
+    grid-column: span 1;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.home-location {
+    grid-column: span 1;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Row 3: Social (2 cols) + CTA (1 col) */
+.home-social {
+    grid-column: span 2;
+    padding: 22px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.home-cta {
+    grid-column: span 1;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* Row 4: CRT retro setup — full width */
+.home-crt {
+    grid-column: span 3;
+    padding: 0;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    min-height: 340px;
+}
+
+.home-crt-intro {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+    border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.home-crt-intro h3 {
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 800;
+}
+
+.home-crt-intro p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+}
+
+.home-crt-intro .crt-tip {
+    font-size: 0.78rem;
+    color: rgba(255,107,53,0.8);
+    margin-top: 4px;
+}
+
+.home-crt-screen {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ── ID CARD ─────────────────────────────── */
@@ -559,15 +639,7 @@ section { padding: 80px 0; }
     letter-spacing: 0.06em;
 }
 
-/* Status card */
-.home-status {
-    grid-column: span 4;
-    padding: 24px 28px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
+/* Status dot animation — kept here */
 .status-dot {
     width: 10px; height: 10px;
     border-radius: 50%;
@@ -582,20 +654,11 @@ section { padding: 80px 0; }
     50%       { box-shadow: 0 0 0 7px rgba(26,154,94,0.1); }
 }
 
-.status-text { font-size: 0.9rem; font-weight: 600; }
-.status-sub  { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
-
-/* Location card */
-.home-location {
-    grid-column: span 4;
-    padding: 24px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
+.status-text { font-size: 0.88rem; font-weight: 600; }
+.status-sub  { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
 
 .location-label {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -603,22 +666,13 @@ section { padding: 80px 0; }
 }
 
 .location-value {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #fff;
 }
 
-/* Social card */
-.home-social {
-    grid-column: span 4;
-    padding: 24px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
 .social-title {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -627,18 +681,18 @@ section { padding: 80px 0; }
 
 .social-links {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
 .social-link {
-    width: 38px; height: 38px;
+    width: 36px; height: 36px;
     border-radius: var(--radius-sm);
     background: rgba(255,255,255,0.12);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #fff;
     transition: all var(--transition);
 }
@@ -648,18 +702,8 @@ section { padding: 80px 0; }
     transform: translateY(-3px);
 }
 
-/* CTA card */
-.home-cta {
-    grid-column: span 4;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    justify-content: center;
-}
-
 .home-cta .cta-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 800;
     color: #fff;
 }
@@ -1064,42 +1108,7 @@ section { padding: 80px 0; }
     .about-bento .skill-card.wide,
     .about-bento .skill-card.narrow { grid-column: span 12; }
 }
-.monitor-bento {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 16px;
-    align-items: start;
-}
-
-.monitor-intro {
-    grid-column: span 4;
-    padding: 36px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    justify-content: center;
-    align-self: stretch;
-}
-
-.monitor-intro p {
-    font-size: 0.92rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.7;
-}
-
-.monitor-intro h3 {
-    font-size: 1.6rem;
-    color: #fff;
-    font-weight: 800;
-}
-
-.monitor-main {
-    grid-column: span 8;
-    padding: 0;
-    overflow: hidden;
-}
-
-/* CRT */
+/* CRT — now lives inside .home-crt-screen */
 .setup {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     width: 100%;
@@ -1441,12 +1450,14 @@ footer {
    RESPONSIVE
    ============================================= */
 @media (max-width: 1024px) {
-    .home-hero     { grid-column: span 12; }
-    .home-photo    { grid-column: span 6; }
-    .home-status   { grid-column: span 6; }
-    .home-location { grid-column: span 6; }
-    .home-social   { grid-column: span 6; }
-    .home-cta      { grid-column: span 6; }
+    /* home stays 3-col */
+    .home-hero     { grid-column: span 2; }
+    .home-photo    { grid-column: span 1; grid-row: span 2; }
+    .home-status   { grid-column: span 1; }
+    .home-location { grid-column: span 1; }
+    .home-social   { grid-column: span 2; }
+    .home-cta      { grid-column: span 1; }
+    .home-crt      { grid-column: span 3; grid-template-columns: 1fr 2fr; }
 
     .skill-card.wide   { grid-column: span 6; }
     .skill-card.narrow { grid-column: span 6; }
@@ -1459,24 +1470,24 @@ footer {
     .about-card.half  { grid-column: span 6; }
     .about-card.third { grid-column: span 6; }
     .about-card.wide  { grid-column: span 12; }
-
-    .monitor-intro { grid-column: span 12; }
-    .monitor-main  { grid-column: span 12; }
 }
 
 @media (max-width: 768px) {
-    /* Hide sidebar, show hamburger */
     .sidebar        { display: none; }
     .nav-hamburger  { display: flex; }
 
     .page { margin-left: 0; padding: 72px 16px 60px; }
     section { padding: 60px 0; }
-    .home-hero      { grid-column: span 12; padding: 32px 24px; min-height: auto; }
-    .home-photo     { grid-column: span 12; min-height: 260px; }
-    .home-status    { grid-column: span 12; }
-    .home-location  { grid-column: span 6; }
-    .home-social    { grid-column: span 12; }
-    .home-cta       { grid-column: span 6; }
+
+    .home-bento     { grid-template-columns: 1fr; }
+    .home-hero      { grid-column: span 1; min-height: auto; padding: 28px 24px; }
+    .home-photo     { grid-column: span 1; grid-row: span 1; min-height: 360px; }
+    .home-status    { grid-column: span 1; }
+    .home-location  { grid-column: span 1; }
+    .home-social    { grid-column: span 1; }
+    .home-cta       { grid-column: span 1; }
+    .home-crt       { grid-column: span 1; grid-template-columns: 1fr; }
+    .home-crt-intro { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
 
     .skill-card.wide, .skill-card.narrow, .skill-card.full { grid-column: span 12; }
 
@@ -1486,16 +1497,13 @@ footer {
     .about-bento .skill-card.wide,
     .about-bento .skill-card.narrow { grid-column: span 12; }
 
-    .monitor-intro, .monitor-main { grid-column: span 12; }
-
     .desktop { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px; }
     .desktop-icon span { font-size: 9px; }
     .terminal-window, .window { width: 92%; height: 68%; }
 }
 
 @media (max-width: 480px) {
-    .hero-name { font-size: 2.2rem; }
+    .hero-name { font-size: 2rem; }
     .hero-actions { flex-direction: column; }
     .hero-actions .btn { width: 100%; justify-content: center; }
-    .home-location, .home-cta { grid-column: span 12; }
 }
