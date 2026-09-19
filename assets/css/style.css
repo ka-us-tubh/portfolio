@@ -94,26 +94,30 @@ p { color: var(--text-secondary); line-height: 1.7; }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
 
 /* =============================================
-   SIDEBAR
+   SIDEBAR — floating bento card
    ============================================= */
 .sidebar {
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: var(--sidebar-w);
+    top: 20px;
+    left: 16px;
+    bottom: 20px;
+    width: 72px;
     z-index: 1000;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px 0 24px;
+    padding: 22px 0 20px;
     gap: 4px;
     background: var(--bg-card);
-    border-right: 1px solid var(--border);
-    transition: background var(--transition), border-color var(--transition);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
-.sidebar.scrolled { box-shadow: var(--shadow-md); }
+.sidebar.scrolled {
+    box-shadow: var(--shadow-lg);
+}
 
 /* Brand */
 .sidebar-brand {
@@ -259,9 +263,9 @@ p { color: var(--text-secondary); line-height: 1.7; }
    PAGE WRAPPER
    ============================================= */
 .page {
-    margin-left: var(--sidebar-w);
-    max-width: calc(1200px + var(--sidebar-w));
-    padding: 40px 48px 80px;
+    margin-left: calc(16px + 72px + 16px); /* sidebar left + sidebar width + gap */
+    max-width: 1100px;
+    padding: 40px 32px 80px;
 }
 
 section { padding: 80px 0; }
@@ -420,32 +424,139 @@ section { padding: 80px 0; }
     grid-column: span 4;
     grid-row: span 2;
     min-height: 340px;
-    overflow: hidden;
+    overflow: visible !important; /* allow lanyard to hang above */
     border-radius: var(--radius-lg);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px 16px;
+    background: var(--bg-card-alt) !important;
+}
+
+/* ── ID CARD ─────────────────────────────── */
+.id-card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
+}
+
+/* Lanyard */
+.id-lanyard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-bottom: -2px;
+    z-index: 1;
     position: relative;
 }
 
-.home-photo img {
+.id-lanyard-strap {
+    width: 4px;
+    height: 44px;
+    background: linear-gradient(to bottom, var(--text-muted), var(--border-strong));
+    border-radius: 2px;
+}
+
+.id-lanyard-clip {
+    width: 18px;
+    height: 10px;
+    border: 2.5px solid var(--text-muted);
+    border-radius: 4px 4px 0 0;
+    border-bottom: none;
+    background: var(--bg-card);
+}
+
+/* Card */
+.id-card {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.home-photo:hover .id-card {
+    transform: translateY(-4px) rotate(-1deg);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.id-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.id-card-org {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+.id-card-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 99px;
+    background: var(--brand);
+    color: #fff;
+}
+
+.id-card-photo-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 3.5;
+    overflow: hidden;
+    background: var(--bg-card-alt);
+    position: relative;
+}
+
+.id-card-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top center;
+    filter: none;
     transition: transform 0.5s ease;
 }
 
-.home-photo:hover img { transform: scale(1.04); }
+.home-photo:hover .id-card-photo { transform: scale(1.04); }
 
-.home-photo-badge {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    padding: 8px 16px;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(8px);
-    border-radius: 99px;
-    color: #fff;
-    font-size: 0.78rem;
+.id-card-footer {
+    padding: 10px 14px 12px;
+    background: var(--bg-card);
+}
+
+.id-card-name-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.id-card-name {
+    font-family: var(--font-heading);
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.id-card-role {
+    font-size: 0.72rem;
     font-weight: 600;
+    color: var(--brand);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 /* Status card */
@@ -1360,7 +1471,6 @@ footer {
 
     .page { margin-left: 0; padding: 72px 16px 60px; }
     section { padding: 60px 0; }
-
     .home-hero      { grid-column: span 12; padding: 32px 24px; min-height: auto; }
     .home-photo     { grid-column: span 12; min-height: 260px; }
     .home-status    { grid-column: span 12; }
