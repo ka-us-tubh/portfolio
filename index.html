@@ -1,592 +1,580 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kaustubh Gupta</title>
-    <script>
-      const savedTheme = localStorage.getItem('portfolio-theme');
-      const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.documentElement.dataset.theme = savedTheme || preferredTheme;
-    </script>
-    <link rel="icon" href="./assets/images/person2.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/css/aos.css" />
-    <link rel="stylesheet" href="./assets/css/line-awesome.min.css" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaustubh Gupta — AI Engineer</title>
 
-  <body data-bs-spy="scroll" data-bs-target=".navbar">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand mx-lg-auto mb-lg-4" href="#">
-          <span class="h3 fw-bold">Kaustubh Gupta</span>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#services">Skills</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#work">Work</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About Me</a>
-            </li>
-            <li class="nav-item">
-              <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch color theme">
-                <span class="theme-toggle-icon" aria-hidden="true">D/L</span>
-                <span class="theme-toggle-text">Theme</span>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- //NAVBAR -->
+  <!-- Inline theme init to avoid flash -->
+  <script>
+    const saved = localStorage.getItem('portfolio-theme');
+    const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = saved || preferred;
+  </script>
 
-    <!-- CONTENT WRAPPER -->
-    <div id="content-wrapper">
-      <!-- HOME -->
-      <section id="home" class="full-height px-lg-5">
-        <div class="container">
-          <div class="row gy-5">
-            <div class="col-lg-6">
-              <h1 class="display-4 fw-bold" data-aos="fade-up">
-               Hi, I'M <span class="text-brand">KAUSTUBH GUPTA</span> FROM
-                INDIA
-              </h1>
-              <p class="lead mt-2 mb-4" data-aos="fade-up" data-aos-delay="300">
-                I am an AI Engineer, focused on building intelligent systems and exploring cutting-edge AI technologies. With a strong background in machine learning, deep learning, and software engineering, I develop innovative solutions to solve complex problems. My passion lies in advancing AI capabilities, from generative models and agentic systems to quantum machine learning applications.
-              </p>
-              <div  class="col-auto" data-aos="fade-up" data-aos-delay="600">
-                <a href="#work" class="btn btn-brand me-3">Explore My Work</a>
-                
-                <a href="resume_kaustubh.pdf" class="btn btn-brand me-3">Resume</a>
-               
-                
-              </div>
-              <br>
-             
+  <link rel="icon" href="./assets/images/person2.jpg" type="image/x-icon" />
+  <link rel="stylesheet" href="./assets/css/aos.css" />
+  <link rel="stylesheet" href="./assets/css/line-awesome.min.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
 
-                <div class="col-auto" data-aos="fade-up" data-aos-delay="600">
-                  <div class="social-icons">
-                    <a href="https://twitter.com/Kaustub25522311"><i class="lab la-twitter"></i></a>
-                    <a href="https://linkedin.com/in/kaustubh-gupta-79a65b21b"><i class="lab la-linkedin"></i></a>
-                    <a href="mailto:kaustubhg10@gmail.com"><i class="las la-envelope"></i></a>
-                    <a href="https://github.com/ka-us-tubh"><i class="lab la-github"></i></a>
-                    <a href="https://medium.com/@kaustubhg10"><i class="lab la-medium"></i></a>
-<!--                     <a href="https://leetcode.com/kaus_tubh/"><i class="las la-laptop-code"></i></a> -->
-                  </div>
-             </div>
-             <br>
-            </div>
-            <div class="col-lg-6" >
-              <div class="bg-base p-4 rounded-4 shadow-effect">
-                <img
-                  class="rounded-4"
-                  src="./assets/images/person.jpeg"
-                  alt="Kaustubh Gupta"
-                  style="width: 100%; height: auto;"
-                />
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </section>
-      <!-- //HOME -->
+<body>
 
-      <!-- SERVICES -->
-      <section id="services" class="full-height px-lg-5">
-        <div class="container">
-          <div class="row pb-4" data-aos="fade-up">
-            <div class="col-lg-8">
-              <h6 class="text-brand">Skills</h6>
-              <h1>Skills That I Have</h1>
-            </div>
-          </div>
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#home">KG<span>.</span></a>
 
-          <div class="row gy-4">
-            <div class="col-md-6" data-aos="fade-up">
-              <div class="service skill-topic p-4 bg-base rounded-4 shadow-effect">
-                <div class="iconbox rounded-4">
-                  <i class="las la-server"></i>
-                </div>
-                <h5 class="mt-4 mb-3">Backend</h5>
-                <div class="skill-list">
-                  <span>Python</span>
-                  <span>FastAPI</span>
-                  <span>REST APIs</span>
-                  <span>MySQL</span>
-                  <span>Docker</span>
-                </div>
-              </div>
-            </div>
+      <ul class="nav-links" role="list">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#workspace">Setup</a></li>
+      </ul>
 
-            <div class="col-md-6" data-aos="fade-up">
-              <div class="service skill-topic p-4 bg-base rounded-4 shadow-effect">
-                <div class="iconbox rounded-4">
-                  <i class="las la-robot"></i>
-                </div>
-                <h5 class="mt-4 mb-3">Machine Learning</h5>
-                <div class="skill-list">
-                  <span>Scikit-learn</span>
-                  <span>Pandas</span>
-                  <span>NumPy</span>
-                  <span>Matplotlib</span>
-                  <span>Seaborn</span>
-                </div>
-              </div>
-            </div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+        <!-- Sun icon (shown in dark mode) -->
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <span class="theme-toggle-text">Dark</span>
+      </button>
 
-            <div class="col-md-6" data-aos="fade-up">
-              <div class="service skill-topic p-4 bg-base rounded-4 shadow-effect">
-                <div class="iconbox rounded-4">
-                  <i class="las la-brain"></i>
-                </div>
-                <h5 class="mt-4 mb-3">Deep Learning</h5>
-                <div class="skill-list">
-                  <span>TensorFlow</span>
-                  <span>PyTorch</span>
-                  <span>Keras</span>
-                  <span>OpenCV</span>
-                  <span>CNNs</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6" data-aos="fade-up">
-              <div class="service skill-topic p-4 bg-base rounded-4 shadow-effect">
-                <div class="iconbox rounded-4">
-                  <i class="las la-project-diagram"></i>
-                </div>
-                <h5 class="mt-4 mb-3">Gen / Agentic AI</h5>
-                <div class="skill-list">
-                  <span>LLMs</span>
-                  <span>LangChain</span>
-                  <span>LangGraph</span>
-                  <span>Hugging Face</span>
-                  <span>RAG</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6" data-aos="fade-up">
-              <div class="service skill-topic p-4 bg-base rounded-4 shadow-effect">
-                <div class="iconbox rounded-4">
-                  <i class="las la-code"></i>
-                </div>
-                <h5 class="mt-4 mb-3">Frontend</h5>
-                <div class="skill-list">
-                  <span>ReactJS</span>
-                  <span>Tailwind CSS</span>
-                  <span>HTML</span>
-                  <span>JavaScript</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- SERVICES -->
-
-      <!-- WORK -->
-      <section id="work" class="full-height px-lg-5">
-        <div class="container">
-          <div class="row pb-4" data-aos="fade-up">
-            <div class="col-lg-8">
-              <h6 class="text-brand">WORK</h6>
-              <h1>My Projects</h1>
-            </div>
-          </div>
-
-          <div class="row gy-4">
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-custom rounded-4 bg-base shadow-effect">
-                <div class="card-custom-image rounded-4">
-                  <img
-                    class="rounded-4"
-                    src="./assets/images/ml.png"
-                    alt=""
-                  />
-                </div>
-                <div class="card-custom-content p-4">
-                  <h4>Moon_Lander</h4>
-                  <p>
-                    DQN-RL based lunar lander agent.  
-                  </p>
-                  <a href="https://github.com/ka-us-tubh/DQN_RL_luner_lander" class="link-custom">Github Repo</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-custom rounded-4 bg-base shadow-effect">
-                <div class="card-custom-image rounded-4">
-                  <img
-                    class="rounded-4"
-                    src="./assets/images/qc.png"
-                    alt=""
-                  />
-                </div>
-                <div class="card-custom-content p-4">
-                  <h4>Quantum Edge Detection</h4>
-                  <p>
-                    Using QHED algorithm for detection of image edges.
-                  </p>
-                  <a href="https://github.com/ka-us-tubh/Demonstration-of-quantum-hadamard-edge-detection" class="link-custom">Github Repo</a>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-custom rounded-4 bg-base shadow-effect">
-                <div class="card-custom-image rounded-4">
-                  <img
-                    class="rounded-4"
-                    src="./assets/images/portal.png"
-                    alt=""
-                  />
-                </div>
-                <div class="card-custom-content p-4">
-                  <h4>Portal Valley</h4>
-                  <p>
-                    A top-down game made using javascript.
-                  </p>
-                  <!-- <div class="row gy-4 justify-content-between"> -->
-                  <a href="https://ka-us-tubh.github.io/game3/" class="link-custom">Play now</a>
-                  <!-- <a href="#" class="link-custom">Github Repo</a> -->
-                  <!-- </div> -->
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-custom rounded-4 bg-base shadow-effect">
-                <div class="card-custom-image rounded-4">
-                  <img
-                    class="rounded-4"
-                    src="./assets/images/qkd.jpg"
-                    alt=""
-                  
-                  />
-                </div>
-                <div class="card-custom-content p-4">
-                  <h4>Tooth Finder</h4>
-                  <p>
-                    Detection of tooth type from X-Ray img. 
-                  </p>
-                  
-                  <a href="https://huggingface.co/spaces/kaustubhg10/findtoothtypeVer1.0" class="link-custom">Open</a>
-                  <!-- <a href="#" class="link-custom">Github Repo</a> -->
-                
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-custom rounded-4 bg-base shadow-effect">
-                <div class="card-custom-image rounded-4">
-                  <img
-                    class="rounded-4"
-                    src="./assets/images/images.jpg"
-                    alt=""
-                  
-                  />
-                </div>
-                <div class="card-custom-content p-4">
-                  <h4>Quantum Teleportation</h4>
-                  <p>
-                    Teleporting information from one qubit to another. 
-                  </p>
-                  <a href="https://github.com/ka-us-tubh/quantum-computing-qiskit-/blob/master/teleportation%20(3).ipynb" class="link-custom">Github Repo</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-custom rounded-4 bg-base shadow-effect">
-                <div class="card-custom-image rounded-4">
-                  <img
-                    class="rounded-4"
-                    src="./assets/images/grov.png"
-                    alt=""
-              
-                  />
-                </div>
-                <div class="card-custom-content p-4">
-                  <h4>Grover Algorithm</h4>
-                  <p>
-                    Implementaion of grover search algorithm for unstructure data search.
-                  </p>
-                  <a href="https://github.com/ka-us-tubh/quantum-computing-qiskit-/blob/master/grover%20algo.ipynb" class="link-custom">Github Repo</a>
-                </div>
-              </div>
-            </div>
-
-    
-
-
-
-            
-
-                 <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-custom rounded-4 bg-base shadow-effect">
-                <div class="card-custom-image rounded-4">
-                  <img
-                    class="rounded-4"
-                    src="./assets/images/autopipe-high-resolution-logo-white.png"
-                    alt=""
-                  />
-                </div>
-                <div class="card-custom-content p-4">
-                  <h4>AutoPIPE: T M</h4>
-                  <p>
-                    Power Automate pipeline that scrapes LinkedIn data and generates custom marketing messages.
-                  </p>
-                  <a href="https://github.com/ka-us-tubh/AutoPIPE.git" class="link-custom">Github Repo</a>
-                </div>
-              </div>
-            </div>
-            
-               <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-custom rounded-4 bg-base shadow-effect">
-                <div class="card-custom-image rounded-4">
-                  <img
-                    class="rounded-4"
-                    src="./assets/images/ttrec.png"
-                    alt=""
-                  />
-                </div>
-                <div class="card-custom-content p-4">
-                  <h4>TwinTower-RecSys</h4>
-                  <p>
-                    Two Neural-Network based Recommendation System.
-                  </p>
-                  <a href="https://github.com/ka-us-tubh/two-tower-recommendation-retrieval-system.git" class="link-custom">Github Repo</a>
-                </div>
-              </div>
-            </div>
-           
-
-            
-          </div>
-        </div>
-      </section>
-      <!-- //WORK -->
-
-      <!-- ABOUT -->
-      <section id="about" class="full-height px-lg-5">
-        <div class="container">
-          <div class="row pb-4" data-aos="fade-up">
-            <div class="col-lg-8">
-              <h6 class="text-brand">ABOUT</h6>
-              <h1>My Education & Experience</h1>
-            </div>
-          </div>
-
-          <div class="row gy-5">
-            <div class="col-lg-6">
-              <h3 class="mb-4" data-aos="fade-up" data-aos-delay="200">
-                Education
-              </h3>
-              <div class="row gy-4">
-                <div class="col-12" data-aos="fade-up" data-aos-delay="400">
-                  <div class="bg-base p-4 rounded-4 shadow-effect">
-                    <h4>Bachelors of Computer Science</h4>
-                    <p class="text-brand mb-2">
-                    Krishna Institute of Engineering & Technology (2020 - 2024)
-                    </p>
-                    <p class="mb-0">
-                        CGPA - 8.04
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6">
-              <h3 class="mb-4" data-aos="fade-up" data-aos-delay="200">
-                Experience
-              </h3>
-              <div class="row gy-4">
-            
-                <div class="col-12" data-aos="fade-up" data-aos-delay="400">
-                  <div class="bg-base p-4 rounded-4 shadow-effect">
-                    <h4>AI Engineer</h4>
-                    <p class="text-brand mb-2">Tata Consultancy Services - BFSI R&I (April 2025 - Current)</p>
-                    <p class="mb-0">
-                        Working as an AI Engineer in the Banking, Financial Services & Insurance Research & Innovation team, developing AI solutions and exploring cutting-edge technologies.
-                    </p>
-                  </div>
-                </div>
-
-
-
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- //ABOUT -->
-
-      <!-- MONITOR SECTION -->
-      <section id="monitor" class="full-height px-lg-5">
-        <div class="container">
-          <div class="row pb-4" data-aos="fade-up">
-            <div class="col-lg-8">
-              <h6 class="text-brand">WORKSPACE</h6>
-              <h1>My Retro Setup</h1>
-            </div>
-          </div>
-
-          <div class="row gy-5 justify-content-center">
-            <div class="col-lg-8">
-              <div class="setup">
-                <div class="crt-frame shadow-effect">
-                    <div class="crt-screen">
-                        <div class="desktop">
-                            <div class="desktop-icon" onclick="toggleTerminal()">
-                                <img class="icon-image" src="terminal.png">
-                                <span>Terminal</span>
-                            </div>
-                            <div class="desktop-icon" onclick="toggleWindow('myComputer')">
-                                <img class="icon-image" src="comp.png">
-                                <span>My Computer</span>
-                            </div>
-                            <div class="desktop-icon" onclick="toggleWindow('recycleBin')">
-                                <img class="icon-image" src="trash.png">
-                                <span>Recycle Bin</span>
-                            </div>
-                            <div class="desktop-icon" onclick="window.open('https://github.com/ka-us-tubh', '_blank')">
-                                <img class="icon-image" src="github.png">
-                                <span>Github</span>
-                            </div>
-                            <div class="desktop-icon" onclick="window.open('https://linkedin.com/in/kaustubh-gupta-79a65b21b', '_blank')">
-                                <img class="icon-image" src="linkedin.png">
-                                <span>linkedin</span>
-                            </div>
-                            <div class="desktop-icon" onclick="window.open('https://ka-us-tubh.github.io/game3/', '_blank')">
-                                <img class="icon-image" src="game.png">
-                                <span>RetroGame</span>
-                            </div>
-                            <div class="desktop-icon" onclick="window.open('mailto:kaustubhg10@gmail.com', '_blank')">
-                                <img class="icon-image" src="mail.png">
-                                <span>Mail</span>
-                            </div>
-                        </div>
-                        <div class="taskbar">
-                            <div class="start-button">Start</div>
-                            <div class="taskbar-clock" id="taskbar-clock"></div>
-                        </div>
-                        <div class="terminal-window">
-                            <div class="terminal">
-                                <div class="terminal-content" id="terminal-output">
-                                    Welcome to Kaustubh OS v1.0 ...<br>
-                                    use cmd "help" to know more...
-                                </div>
-                                <div class="terminal-input">
-                                    <span>$</span>
-                                    <input type="text" id="terminal-command" autofocus>
-                                </div>
-                            </div>
-                        </div>
-                         <!-- My Computer Window -->
-                        <div class="window" id="myComputer-window">
-                            <div class="window-header">
-                                <h3>My Computer</h3>
-                                <div class="window-buttons">
-                                    <div class="window-button maximize" onclick="maximizeWindow('myComputer')"></div>
-                                    <div class="window-button" onclick="closeWindow('myComputer')"></div>
-                                </div>
-                            </div>
-                            <div class="window-content">
-                        
-                                <ul>
-                                    <li><a href="resume_kaustubh.pdf"><b>resume.pdf</b></a></li>
-                                    <li><a href="#work"><strong>project_list.html</strong></a></li>
-                                    <li>Documents</li>
-                                    <li>Downloads</li>
-                                </ul>
-                            </div>
-                        </div>
-                         <!-- Recycle Bin Window -->
-                         <div class="window" id="recycleBin-window">
-                            <div class="window-header">
-                                <h3>Recycle Bin</h3>
-                                <div class="window-buttons">
-                                    <div class="window-button maximize" onclick="maximizeWindow('recycleBin')"></div>
-                                    <div class="window-button" onclick="closeWindow('recycleBin')"></div>
-                                </div>
-                            </div>
-                            <div class="window-content">
-                                
-                                <ul>
-                                    <li>kachara.txt</li>
-                                    <li>kachara.mp4</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="crt-effect"></div>
-                        <div class="screen-gloss"></div>
-                        <div class="scanline"></div>
-                    </div>
-                    <div class="monitor-controls">
-                        <div class="monitor-button"></div>
-                        <div class="monitor-button"></div>
-                        <div class="monitor-button"></div>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- //MONITOR -->
-
-      <!-- FOOTER -->
-      <footer class="py-5 px-lg-5">
-        <div class="container">
-          <div class="row gy-4 justify-content-between">
-            <div class="col-auto">
-                        <p class="mb-0">Designed by <a href="#" class="fw-bold">Kaustubh</a></p>
-                        
-                    </div>
-          
-          </div>
-         
-        </div>
-      </footer>
-      <!-- //FOOTER -->
+      <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <!-- //CONTENT WRAPPER -->
+  </nav>
 
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/aos.js"></script>
-    <script src="./assets/js/main.js"></script>
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-           mermaid.initialize({ startOnLoad: true, theme: 'forest'});
-    </script>
-  </body>
+  <!-- Mobile nav overlay -->
+  <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile navigation">
+    <a href="#home"      onclick="closeMobileNav()">Home</a>
+    <a href="#skills"    onclick="closeMobileNav()">Skills</a>
+    <a href="#work"      onclick="closeMobileNav()">Work</a>
+    <a href="#about"     onclick="closeMobileNav()">About</a>
+    <a href="#workspace" onclick="closeMobileNav()">Setup</a>
+  </div>
+
+  <!-- ===================== PAGE ===================== -->
+  <div class="page">
+
+    <!-- ========== HOME ========== -->
+    <section id="home">
+      <div class="home-bento">
+
+        <!-- Hero: name + bio -->
+        <div class="bento-card home-hero" data-aos="fade-up">
+          <div>
+            <p class="hero-greeting">AI Engineer · India</p>
+            <h1 class="hero-name">
+              Hi, I'm<br><em>Kaustubh</em><br>Gupta
+            </h1>
+            <p class="hero-bio">
+              Building intelligent systems at the intersection of machine learning,
+              agentic AI, and software engineering. Currently at TCS BFSI R&amp;I.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a href="#work" class="btn btn-primary">Explore Work</a>
+            <a href="resume_kaustubh.pdf" class="btn btn-outline" target="_blank" rel="noopener">Resume ↗</a>
+          </div>
+        </div>
+
+        <!-- Photo -->
+        <div class="bento-card home-photo" data-aos="fade-up" data-aos-delay="100">
+          <img src="./assets/images/person.jpeg" alt="Kaustubh Gupta" />
+          <div class="home-photo-badge">📍 India</div>
+        </div>
+
+        <!-- Status -->
+        <div class="bento-card home-status" data-aos="fade-up" data-aos-delay="150">
+          <div class="status-dot" aria-hidden="true"></div>
+          <div>
+            <p class="status-text">Available for projects</p>
+            <p class="status-sub">Open to collaboration</p>
+          </div>
+        </div>
+
+        <!-- Location / Role card -->
+        <div class="bento-card dark home-location" data-aos="fade-up" data-aos-delay="200">
+          <p class="location-label">Current Role</p>
+          <p class="location-value">AI Engineer</p>
+          <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);margin-top:4px;">TCS · BFSI R&amp;I</p>
+        </div>
+
+        <!-- Social -->
+        <div class="bento-card brand home-social" data-aos="fade-up" data-aos-delay="250">
+          <p class="social-title">Find me online</p>
+          <div class="social-links">
+            <a class="social-link" href="https://github.com/ka-us-tubh" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="lab la-github"></i>
+            </a>
+            <a class="social-link" href="https://linkedin.com/in/kaustubh-gupta-79a65b21b" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="lab la-linkedin"></i>
+            </a>
+            <a class="social-link" href="mailto:kaustubhg10@gmail.com" aria-label="Email">
+              <i class="las la-envelope"></i>
+            </a>
+            <a class="social-link" href="https://twitter.com/Kaustub25522311" target="_blank" rel="noopener" aria-label="Twitter">
+              <i class="lab la-twitter"></i>
+            </a>
+            <a class="social-link" href="https://medium.com/@kaustubhg10" target="_blank" rel="noopener" aria-label="Medium">
+              <i class="lab la-medium"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="bento-card dark home-cta" data-aos="fade-up" data-aos-delay="300">
+          <p class="cta-title">Let's build something together</p>
+          <a href="mailto:kaustubhg10@gmail.com" class="btn btn-white">Get in touch</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section id="skills">
+      <span class="section-label">Skills</span>
+      <h2 class="section-title">What I work with</h2>
+
+      <div class="skills-bento">
+
+        <!-- Backend -->
+        <div class="bento-card skill-card wide" data-aos="fade-up">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div class="skill-icon">⚙️</div>
+            <h5>Backend Engineering</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+        </div>
+
+        <!-- ML -->
+        <div class="bento-card skill-card wide" data-aos="fade-up" data-aos-delay="80">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div class="skill-icon">📊</div>
+            <h5>Machine Learning</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+          </div>
+        </div>
+
+        <!-- Deep Learning -->
+        <div class="bento-card dark skill-card narrow" data-aos="fade-up" data-aos-delay="120">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div class="skill-icon">🧠</div>
+            <h5>Deep Learning</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Keras</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">CNNs</span>
+          </div>
+        </div>
+
+        <!-- Gen/Agentic AI -->
+        <div class="bento-card brand skill-card narrow" data-aos="fade-up" data-aos-delay="160">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div class="skill-icon" style="background:rgba(255,255,255,0.2);border:none;">🤖</div>
+            <h5>Gen &amp; Agentic AI</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">LLMs</span>
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">LangGraph</span>
+            <span class="skill-tag">Hugging Face</span>
+            <span class="skill-tag">RAG</span>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="bento-card skill-card narrow" data-aos="fade-up" data-aos-delay="200">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div class="skill-icon">🎨</div>
+            <h5>Frontend</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">ReactJS</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <!-- Quantum computing mini card -->
+        <div class="bento-card dark skill-card narrow" data-aos="fade-up" data-aos-delay="240">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div class="skill-icon">⚛️</div>
+            <h5>Quantum Computing</h5>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Qiskit</span>
+            <span class="skill-tag">QHED</span>
+            <span class="skill-tag">QML</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== WORK / PROJECTS ========== -->
+    <section id="work">
+      <span class="section-label">Work</span>
+      <h2 class="section-title">Selected projects</h2>
+
+      <div class="projects-bento">
+
+        <!-- Moon Lander — wide -->
+        <div class="bento-card project-card wide" data-aos="fade-up">
+          <div class="project-img">
+            <img src="./assets/images/ml.png" alt="Moon Lander project" />
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Reinforcement Learning</span>
+            <h3 class="project-title">Moon_Lander</h3>
+            <p class="project-desc">DQN-RL based lunar lander agent trained to land safely on the moon surface using deep Q-networks.</p>
+            <a href="https://github.com/ka-us-tubh/DQN_RL_luner_lander" class="project-link" target="_blank" rel="noopener">
+              View on GitHub <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quantum Edge Detection — small -->
+        <div class="bento-card dark project-card small" data-aos="fade-up" data-aos-delay="80">
+          <div class="project-img">
+            <img src="./assets/images/qc.png" alt="Quantum Edge Detection" />
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Quantum Computing</span>
+            <h3 class="project-title">Quantum Edge Detection</h3>
+            <p class="project-desc">QHED algorithm for image edge detection on a quantum computer.</p>
+            <a href="https://github.com/ka-us-tubh/Demonstration-of-quantum-hadamard-edge-detection" class="project-link" target="_blank" rel="noopener">
+              View on GitHub <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Portal Valley -->
+        <div class="bento-card project-card small" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-img">
+            <img src="./assets/images/portal.png" alt="Portal Valley game" />
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Game Dev</span>
+            <h3 class="project-title">Portal Valley</h3>
+            <p class="project-desc">Top-down game built with vanilla JavaScript.</p>
+            <a href="https://ka-us-tubh.github.io/game3/" class="project-link" target="_blank" rel="noopener">
+              Play now <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- TwinTower-RecSys -->
+        <div class="bento-card project-card" data-aos="fade-up" data-aos-delay="120">
+          <div class="project-img">
+            <img src="./assets/images/ttrec.png" alt="TwinTower RecSys" />
+          </div>
+          <div class="project-body">
+            <span class="project-tag">ML Systems</span>
+            <h3 class="project-title">TwinTower-RecSys</h3>
+            <p class="project-desc">Two neural-network based recommendation &amp; retrieval system using dual-encoder architecture.</p>
+            <a href="https://github.com/ka-us-tubh/two-tower-recommendation-retrieval-system.git" class="project-link" target="_blank" rel="noopener">
+              View on GitHub <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- AutoPIPE -->
+        <div class="bento-card dark project-card" data-aos="fade-up" data-aos-delay="140">
+          <div class="project-img">
+            <img src="./assets/images/autopipe-high-resolution-logo-white.png" alt="AutoPIPE" style="object-fit:contain;padding:20px;background:#111;" />
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Automation</span>
+            <h3 class="project-title">AutoPIPE: T M</h3>
+            <p class="project-desc">Power Automate pipeline that scrapes LinkedIn data and generates custom marketing messages.</p>
+            <a href="https://github.com/ka-us-tubh/AutoPIPE.git" class="project-link" target="_blank" rel="noopener">
+              View on GitHub <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tooth Finder -->
+        <div class="bento-card project-card" data-aos="fade-up" data-aos-delay="160">
+          <div class="project-img">
+            <img src="./assets/images/qkd.jpg" alt="Tooth Finder" />
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Computer Vision</span>
+            <h3 class="project-title">Tooth Finder</h3>
+            <p class="project-desc">Detects tooth type from X-Ray images using a trained deep learning classifier.</p>
+            <a href="https://huggingface.co/spaces/kaustubhg10/findtoothtypeVer1.0" class="project-link" target="_blank" rel="noopener">
+              Open Demo <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quantum Teleportation -->
+        <div class="bento-card project-card" data-aos="fade-up" data-aos-delay="180">
+          <div class="project-img">
+            <img src="./assets/images/images.jpg" alt="Quantum Teleportation" />
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Quantum Computing</span>
+            <h3 class="project-title">Quantum Teleportation</h3>
+            <p class="project-desc">Teleporting quantum information between qubits using Qiskit and Bell states.</p>
+            <a href="https://github.com/ka-us-tubh/quantum-computing-qiskit-/blob/master/teleportation%20(3).ipynb" class="project-link" target="_blank" rel="noopener">
+              View Notebook <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Grover Algorithm -->
+        <div class="bento-card dark project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-img">
+            <img src="./assets/images/grov.png" alt="Grover Algorithm" />
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Quantum Algorithms</span>
+            <h3 class="project-title">Grover Algorithm</h3>
+            <p class="project-desc">Implementation of Grover's search algorithm for unstructured data using Qiskit.</p>
+            <a href="https://github.com/ka-us-tubh/quantum-computing-qiskit-/blob/master/grover%20algo.ipynb" class="project-link" target="_blank" rel="noopener">
+              View Notebook <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about">
+      <span class="section-label">About</span>
+      <h2 class="section-title">Education &amp; Experience</h2>
+
+      <div class="about-bento">
+
+        <!-- Experience — large card -->
+        <div class="bento-card dark about-card wide" data-aos="fade-up">
+          <div class="about-card-icon">💼</div>
+          <p class="about-card-label">Experience</p>
+          <p class="about-card-title">AI Engineer</p>
+          <p class="about-card-sub">Tata Consultancy Services · BFSI R&amp;I</p>
+          <p class="about-card-desc">
+            Working in the Banking, Financial Services &amp; Insurance Research &amp; Innovation team.
+            Developing AI solutions and exploring cutting-edge technologies including LLMs,
+            agentic workflows, and production ML systems.
+          </p>
+          <p style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:4px;">April 2025 — Current</p>
+        </div>
+
+        <!-- Stats card: years -->
+        <div class="bento-card brand about-card third" data-aos="fade-up" data-aos-delay="80">
+          <div class="about-stat">2+</div>
+          <p class="about-stat-label">Years of AI/ML experience</p>
+        </div>
+
+        <!-- Stats card: projects -->
+        <div class="bento-card green about-card third" data-aos="fade-up" data-aos-delay="120">
+          <div class="about-stat">8+</div>
+          <p class="about-stat-label">Projects shipped</p>
+        </div>
+
+        <!-- Stats card: repos -->
+        <div class="bento-card dark about-card third" data-aos="fade-up" data-aos-delay="160">
+          <div class="about-stat">∞</div>
+          <p class="about-stat-label">Things still to learn</p>
+        </div>
+
+        <!-- Education -->
+        <div class="bento-card about-card half" data-aos="fade-up" data-aos-delay="100">
+          <div class="about-card-icon">🎓</div>
+          <p class="about-card-label">Education</p>
+          <p class="about-card-title">B.Tech — Computer Science</p>
+          <p class="about-card-sub">KIET Group of Institutions · 2020 – 2024</p>
+          <p class="about-card-desc">CGPA — 8.04. Focused on machine learning, algorithms, and software engineering fundamentals.</p>
+        </div>
+
+        <!-- Interests -->
+        <div class="bento-card about-card half" data-aos="fade-up" data-aos-delay="140">
+          <div class="about-card-icon">🔬</div>
+          <p class="about-card-label">Research Interests</p>
+          <p class="about-card-title">What excites me</p>
+          <p class="about-card-desc">
+            Generative AI &amp; LLMs · Agentic Systems · Quantum Machine Learning ·
+            Recommendation Systems · Reinforcement Learning
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== WORKSPACE / RETRO SETUP ========== -->
+    <section id="workspace">
+      <span class="section-label">Workspace</span>
+      <h2 class="section-title">My Retro Setup</h2>
+
+      <div class="monitor-bento">
+
+        <!-- Intro blurb -->
+        <div class="bento-card dark monitor-intro" data-aos="fade-up">
+          <h3>KaustubhOS v1.0</h3>
+          <p>
+            A retro CRT experience. Click the desktop icons to explore
+            — open the terminal, browse files, launch links, or play the game.
+          </p>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.35);">
+            Tip: type <strong style="color:rgba(255,107,53,0.9);">help</strong> in the terminal.
+          </p>
+        </div>
+
+        <!-- CRT Monitor -->
+        <div class="bento-card monitor-main" data-aos="fade-up" data-aos-delay="120">
+          <div class="setup">
+            <div class="crt-frame">
+              <div class="crt-screen">
+                <div class="desktop">
+                  <div class="desktop-icon" onclick="toggleTerminal()" tabindex="0" role="button" aria-label="Open Terminal">
+                    <img class="icon-image" src="terminal.png" alt="" />
+                    <span>Terminal</span>
+                  </div>
+                  <div class="desktop-icon" onclick="toggleWindow('myComputer')" tabindex="0" role="button" aria-label="Open My Computer">
+                    <img class="icon-image" src="comp.png" alt="" />
+                    <span>My Computer</span>
+                  </div>
+                  <div class="desktop-icon" onclick="toggleWindow('recycleBin')" tabindex="0" role="button" aria-label="Open Recycle Bin">
+                    <img class="icon-image" src="trash.png" alt="" />
+                    <span>Recycle Bin</span>
+                  </div>
+                  <div class="desktop-icon" onclick="window.open('https://github.com/ka-us-tubh','_blank')" tabindex="0" role="button" aria-label="Open GitHub">
+                    <img class="icon-image" src="github.png" alt="" />
+                    <span>Github</span>
+                  </div>
+                  <div class="desktop-icon" onclick="window.open('https://linkedin.com/in/kaustubh-gupta-79a65b21b','_blank')" tabindex="0" role="button" aria-label="Open LinkedIn">
+                    <img class="icon-image" src="linkedin.png" alt="" />
+                    <span>LinkedIn</span>
+                  </div>
+                  <div class="desktop-icon" onclick="window.open('https://ka-us-tubh.github.io/game3/','_blank')" tabindex="0" role="button" aria-label="Play RetroGame">
+                    <img class="icon-image" src="game.png" alt="" />
+                    <span>RetroGame</span>
+                  </div>
+                  <div class="desktop-icon" onclick="window.open('mailto:kaustubhg10@gmail.com','_blank')" tabindex="0" role="button" aria-label="Send Mail">
+                    <img class="icon-image" src="mail.png" alt="" />
+                    <span>Mail</span>
+                  </div>
+                </div>
+
+                <div class="taskbar">
+                  <div class="start-button">Start</div>
+                  <div class="taskbar-clock" id="taskbar-clock"></div>
+                </div>
+
+                <!-- Terminal window -->
+                <div class="terminal-window" role="dialog" aria-label="Terminal">
+                  <div class="terminal">
+                    <div class="terminal-content" id="terminal-output">
+                      Welcome to KaustubhOS v1.0...<br>
+                      Type <span style="color:#ffd23f">help</span> to get started.
+                    </div>
+                    <div class="terminal-input">
+                      <span>$</span>
+                      <input type="text" id="terminal-command" aria-label="Terminal input" autocomplete="off" spellcheck="false" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- My Computer window -->
+                <div class="window" id="myComputer-window" role="dialog" aria-label="My Computer">
+                  <div class="window-header">
+                    <h3>My Computer</h3>
+                    <div class="window-buttons">
+                      <div class="window-button maximize" onclick="maximizeWindow('myComputer')" title="Maximize"></div>
+                      <div class="window-button" onclick="closeWindow('myComputer')" title="Close"></div>
+                    </div>
+                  </div>
+                  <div class="window-content">
+                    <ul>
+                      <li><a href="resume_kaustubh.pdf" target="_blank" rel="noopener">resume.pdf</a></li>
+                      <li><a href="#work">project_list.html</a></li>
+                      <li>Documents</li>
+                      <li>Downloads</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Recycle Bin window -->
+                <div class="window" id="recycleBin-window" role="dialog" aria-label="Recycle Bin">
+                  <div class="window-header">
+                    <h3>Recycle Bin</h3>
+                    <div class="window-buttons">
+                      <div class="window-button maximize" onclick="maximizeWindow('recycleBin')" title="Maximize"></div>
+                      <div class="window-button" onclick="closeWindow('recycleBin')" title="Close"></div>
+                    </div>
+                  </div>
+                  <div class="window-content">
+                    <ul>
+                      <li>kachara.txt</li>
+                      <li>kachara.mp4</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="crt-effect"   aria-hidden="true"></div>
+                <div class="screen-gloss" aria-hidden="true"></div>
+                <div class="scanline"     aria-hidden="true"></div>
+              </div><!-- /crt-screen -->
+
+              <div class="monitor-controls" aria-hidden="true">
+                <div class="monitor-button"></div>
+                <div class="monitor-button"></div>
+                <div class="monitor-button"></div>
+              </div>
+            </div><!-- /crt-frame -->
+          </div><!-- /setup -->
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /page -->
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-copy">Designed &amp; built by <a href="#">Kaustubh Gupta</a></p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#home">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="./assets/js/aos.js"></script>
+  <script src="./assets/js/main.js"></script>
+</body>
 </html>

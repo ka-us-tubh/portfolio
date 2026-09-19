@@ -1,173 +1,260 @@
-AOS.init();
-// You can also pass an optional settings object
-// below listed default settings
-AOS.init({
-  
-  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-  offset: 120, // offset (in px) from the original trigger point
-  delay: 0, // values from 0 to 3000, with step 50ms
-  duration: 700, // values from 0 to 3000, with step 50ms
-  easing: 'ease', // default easing for AOS animations
-  once: false, // whether animation should happen only once - while scrolling down
-  mirror: false, // whether elements should animate out while scrolling past them
-  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+/* =============================================
+   BENTO PORTFOLIO — main.js
+   ============================================= */
 
+// ── AOS (scroll animations) ──────────────────
+AOS.init({
+  offset: 80,
+  delay: 0,
+  duration: 600,
+  easing: 'ease-out-cubic',
+  once: true,
+  mirror: false,
 });
 
-const themeToggle = document.getElementById('theme-toggle');
+// ── Theme toggle ─────────────────────────────
+const themeToggle    = document.getElementById('theme-toggle');
 const themeToggleText = document.querySelector('.theme-toggle-text');
 
 function setTheme(theme) {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem('portfolio-theme', theme);
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem('portfolio-theme', theme);
 
-    if (themeToggleText) {
-        themeToggleText.textContent = theme === 'dark' ? 'Light' : 'Dark';
-    }
+  if (themeToggleText) {
+    // Button always shows what clicking will switch TO
+    themeToggleText.textContent = theme === 'dark' ? 'Light' : 'Dark';
+  }
 
-    if (themeToggle) {
-        themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
-    }
+  if (themeToggle) {
+    themeToggle.setAttribute(
+      'aria-label',
+      `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`
+    );
+  }
 }
 
-if (themeToggle) {
-    const initialTheme = document.documentElement.dataset.theme || 'light';
-    setTheme(initialTheme);
+// Sync text with whatever was set by the inline script on <html>
+setTheme(document.documentElement.dataset.theme || 'light');
 
-    themeToggle.addEventListener('click', function() {
-        const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-        setTheme(nextTheme);
-    });
-}
-
-const terminalOutput = document.getElementById('terminal-output');
-const terminalCommand = document.getElementById('terminal-command');
-const terminalWindow = document.querySelector('.terminal-window');
-const clockElement = document.getElementById('taskbar-clock');
-
-const devInfo = {
-name: 'Kaustubh Gupta',
-profession: 'B.Tech in Computer Science & Info. Tech. Student',
-email: 'kaustubhg10@gmail.com',
-portfolio: 'ka-us-tubh.github.io/portfolio',
-skills: [
-    'Python (NumPy, Pandas, Scikit-learn)',
-    'C++',
-    'TensorFlow, Huggingface',
-    'Matplotlib, Seaborn',
-    'PowerBI, MySQL',
-    'Microsoft Power Automate',
-    'Streamlit, Qiskit',
-    'Technical Writing'
-],
-experience: [
-    'Data Analytics Internship at Edunet-IBM skill build (August 2023, 6 weeks)',
-    'Python Internship at IIPC-KIET (August 2021)'
-],
-projects: [
-    'Two-Tower Recommendation System (March 2024)',
-    'Farmer Support System (March 2024)',
-    'AutoPIPE: Targeted Marketing (January 2024)',
-    'Retail Analysis Dashboard (May 2023)',
-    'Edge Detection Using a Quantum Computer (April 2023)'
-]
-};
-function toggleWindow(windowId) {
-    const windowElement = document.getElementById(`${windowId}-window`);
-    windowElement.style.display = windowElement.style.display === 'none' || windowElement.style.display === '' ? 'block' : 'none';
-}
-
-function closeWindow(windowId) {
-    const windowElement = document.getElementById(`${windowId}-window`);
-    windowElement.style.display = 'none';
-}
-
-function maximizeWindow(windowId) {
-    const windowElement = document.getElementById(`${windowId}-window`);
-    if (windowElement.style.width === '100%') {
-        windowElement.style.width = '80%';
-        windowElement.style.height = '60%';
-        windowElement.style.top = '50%';
-        windowElement.style.left = '50%';
-        windowElement.style.transform = 'translate(-50%, -50%)';
-    } else {
-        windowElement.style.width = '100%';
-        windowElement.style.height = '100%';
-        windowElement.style.top = '0';
-        windowElement.style.left = '0';
-        windowElement.style.transform = 'none';
-    }
-}
-function toggleTerminal() {
-    terminalWindow.style.display = terminalWindow.style.display === 'none' ? 'block' : 'none';
-    if (terminalWindow.style.display === 'block') {
-        terminalCommand.focus();
-    }
-}
-
-terminalCommand.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        const command = this.value.trim().toLowerCase();
-        let response = '';
-
-        switch (command) {
-            case 'help':
-                response = 'Available commands: help, date, echo, clear, ls, info, skill, project, experience';
-                break;
-            case 'ls':
-                response = 'resume.pdf<br>project_list.html<br>Documents<br>Downloads';
-                break;
-            case 'date':
-                response = new Date().toString();
-                break;
-            case 'clear':
-                terminalOutput.innerHTML = '';
-                this.value = '';
-                return;
-            case 'info':
-            response = `
-                            Name: ${devInfo.name}<br>
-                            Profession: ${devInfo.profession}<br>
-                            Email: ${devInfo.email}
-                                                `;
-            break;
-            case 'skill':
-            response = `
-                            Skills: ${devInfo.skills.join(', ')}
-                            
-                                                `;
-                break;
-            case 'experience':
-            response = `
-                            Experience: ${devInfo.experience.join(', ')}
-                            
-                                                `;
-                break;
-            case 'project':
-            response = `Projects: ${devInfo.projects.join(', ')}.`;
-            break;
-
-            default:
-                if (command.startsWith('echo ')) {
-                    response = command.slice(5);
-                } else {
-                    response = `Command not found: ${command}`;
-                }
-        }
-
-        terminalOutput.innerHTML += `<div>$ ${this.value}</div>`;
-        terminalOutput.innerHTML += `<div>${response}</div>`;
-        this.value = '';
-
-        // Scroll to bottom
-        terminalOutput.scrollTop = terminalOutput.scrollHeight;
-    }
+themeToggle?.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  setTheme(next);
 });
 
-// Taskbar Clock
-function updateClock() {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    clockElement.textContent = timeString;
+// ── Mobile nav ───────────────────────────────
+const hamburger  = document.getElementById('nav-hamburger');
+const mobileNav  = document.getElementById('nav-mobile');
+
+function openMobileNav() {
+  mobileNav.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
 }
+
+function closeMobileNav() {
+  mobileNav.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+hamburger?.addEventListener('click', () => {
+  const isOpen = mobileNav.classList.contains('open');
+  isOpen ? closeMobileNav() : openMobileNav();
+});
+
+// Close on outside click
+document.addEventListener('click', (e) => {
+  if (
+    mobileNav.classList.contains('open') &&
+    !mobileNav.contains(e.target) &&
+    !hamburger.contains(e.target)
+  ) {
+    closeMobileNav();
+  }
+});
+
+// Expose to inline onclick handlers in HTML
+window.closeMobileNav = closeMobileNav;
+
+// ── Active nav link on scroll ─────────────────
+const sections   = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a');
+
+function updateActiveLink() {
+  const scrollY = window.scrollY + 100;
+  let current = '';
+
+  sections.forEach((sec) => {
+    if (scrollY >= sec.offsetTop) current = sec.id;
+  });
+
+  navAnchors.forEach((a) => {
+    a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
+  });
+}
+
+window.addEventListener('scroll', updateActiveLink, { passive: true });
+updateActiveLink();
+
+// ── Navbar background on scroll ──────────────
+const navbar = document.querySelector('.navbar');
+
+function updateNavbar() {
+  navbar?.classList.toggle('scrolled', window.scrollY > 20);
+}
+
+window.addEventListener('scroll', updateNavbar, { passive: true });
+
+// ── Retro CRT — taskbar clock ─────────────────
+const clockEl = document.getElementById('taskbar-clock');
+
+function updateClock() {
+  if (!clockEl) return;
+  clockEl.textContent = new Date().toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+updateClock();
 setInterval(updateClock, 1000);
+
+// ── CRT — terminal window ─────────────────────
+const terminalOutput  = document.getElementById('terminal-output');
+const terminalCommand = document.getElementById('terminal-command');
+const terminalWindow  = document.querySelector('.terminal-window');
+
+const devInfo = {
+  name:       'Kaustubh Gupta',
+  role:       'AI Engineer @ TCS BFSI R&I',
+  email:      'kaustubhg10@gmail.com',
+  portfolio:  'ka-us-tubh.github.io/portfolio',
+  skills: [
+    'Python', 'FastAPI', 'TensorFlow', 'PyTorch',
+    'LangChain', 'LangGraph', 'Hugging Face', 'RAG',
+    'Qiskit', 'ReactJS', 'Docker', 'MySQL',
+  ],
+  experience: [
+    'AI Engineer — TCS BFSI R&I (April 2025 – Current)',
+    'Data Analytics Intern — Edunet-IBM Skill Build (Aug 2023)',
+    'Python Intern — IIPC-KIET (Aug 2021)',
+  ],
+  projects: [
+    'Moon_Lander — DQN-RL lunar agent',
+    'Quantum Edge Detection — QHED algorithm',
+    'TwinTower-RecSys — dual-encoder recommendation system',
+    'AutoPIPE — LinkedIn scraper + AI marketing pipeline',
+    'Tooth Finder — dental X-ray classifier',
+    'Portal Valley — top-down JS game',
+  ],
+};
+
+const commands = {
+  help: () =>
+    'Commands: <span style="color:#ffd23f">help · info · skill · experience · project · ls · date · clear · echo &lt;msg&gt;</span>',
+  info: () =>
+    `Name: ${devInfo.name}<br>Role: ${devInfo.role}<br>Email: ${devInfo.email}`,
+  skill: () =>
+    `Skills:<br>${devInfo.skills.map((s) => `  · ${s}`).join('<br>')}`,
+  experience: () =>
+    `Experience:<br>${devInfo.experience.map((e) => `  · ${e}`).join('<br>')}`,
+  project: () =>
+    `Projects:<br>${devInfo.projects.map((p) => `  · ${p}`).join('<br>')}`,
+  ls: () =>
+    'resume.pdf &nbsp; project_list.html &nbsp; Documents &nbsp; Downloads',
+  date: () => new Date().toString(),
+};
+
+function printLine(html, isCommand = false) {
+  if (!terminalOutput) return;
+  const line = document.createElement('div');
+  line.style.lineHeight = '1.6';
+  if (isCommand) line.style.opacity = '0.7';
+  line.innerHTML = html;
+  terminalOutput.appendChild(line);
+  terminalOutput.scrollTop = terminalOutput.scrollHeight;
+}
+
+terminalCommand?.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter') return;
+
+  const raw = terminalCommand.value.trim();
+  const cmd = raw.toLowerCase();
+  terminalCommand.value = '';
+
+  if (!raw) return;
+
+  printLine(`<span style="color:rgba(255,255,255,0.4)">$</span> ${raw}`, true);
+
+  if (cmd === 'clear') {
+    terminalOutput.innerHTML = '';
+    return;
+  }
+
+  if (commands[cmd]) {
+    printLine(commands[cmd]());
+    return;
+  }
+
+  if (cmd.startsWith('echo ')) {
+    printLine(raw.slice(5));
+    return;
+  }
+
+  printLine(`<span style="color:#ff6b6b">command not found: ${raw}</span>`);
+});
+
+// ── CRT — window management ───────────────────
+function toggleTerminal() {
+  if (!terminalWindow) return;
+  const visible = terminalWindow.style.display === 'block';
+  terminalWindow.style.display = visible ? 'none' : 'block';
+  if (!visible) terminalCommand?.focus();
+}
+
+function toggleWindow(id) {
+  const win = document.getElementById(`${id}-window`);
+  if (!win) return;
+  win.style.display = win.style.display === 'block' ? 'none' : 'block';
+}
+
+function closeWindow(id) {
+  const win = document.getElementById(`${id}-window`);
+  if (win) win.style.display = 'none';
+}
+
+function maximizeWindow(id) {
+  const win = document.getElementById(`${id}-window`);
+  if (!win) return;
+  const isMax = win.dataset.maximized === 'true';
+  if (isMax) {
+    win.style.width     = '80%';
+    win.style.height    = '60%';
+    win.style.top       = '50%';
+    win.style.left      = '50%';
+    win.style.transform = 'translate(-50%, -50%)';
+    win.dataset.maximized = 'false';
+  } else {
+    win.style.width     = '100%';
+    win.style.height    = '100%';
+    win.style.top       = '0';
+    win.style.left      = '0';
+    win.style.transform = 'none';
+    win.dataset.maximized = 'true';
+  }
+}
+
+// Expose CRT helpers to inline onclick handlers
+window.toggleTerminal = toggleTerminal;
+window.toggleWindow   = toggleWindow;
+window.closeWindow    = closeWindow;
+window.maximizeWindow = maximizeWindow;
+
+// ── Desktop icon keyboard support ────────────
+document.querySelectorAll('.desktop-icon').forEach((icon) => {
+  icon.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      icon.click();
+    }
+  });
+});
