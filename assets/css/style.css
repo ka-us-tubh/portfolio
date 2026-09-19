@@ -476,42 +476,42 @@ section { padding: 80px 0; }
     padding: 0;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    min-height: 340px;
+    grid-template-columns: 280px 1fr;
+    min-height: 260px;
 }
 
 .home-crt-intro {
-    padding: 36px 32px;
+    padding: 28px 24px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
     justify-content: center;
     border-right: 1px solid rgba(255,255,255,0.06);
 }
 
 .home-crt-intro h3 {
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     color: #fff;
     font-weight: 800;
 }
 
 .home-crt-intro p {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.65;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
 }
 
 .home-crt-intro .crt-tip {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: rgba(255,107,53,0.8);
-    margin-top: 4px;
 }
 
 .home-crt-screen {
-    padding: 20px;
+    padding: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 /* ── ID CARD ─────────────────────────────── */
@@ -767,25 +767,26 @@ section { padding: 80px 0; }
    ============================================= */
 .projects-bento {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
 }
 
 .project-card {
-    grid-column: span 6;
+    grid-column: span 1;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
 }
 
-.project-card.tall { grid-row: span 2; }
-.project-card.wide { grid-column: span 8; }
-.project-card.small { grid-column: span 4; }
+/* wide spans 2, small stays 1 */
+.project-card.wide  { grid-column: span 2; }
+.project-card.small { grid-column: span 1; }
+.project-card.tall  { grid-row: span 2; }
 
 .project-img {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     background: var(--bg-card-alt);
     flex-shrink: 0;
@@ -795,6 +796,7 @@ section { padding: 80px 0; }
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     filter: grayscale(20%);
     transition: filter 0.4s ease, transform 0.4s ease;
 }
@@ -805,18 +807,18 @@ section { padding: 80px 0; }
 }
 
 .project-body {
-    padding: 24px 24px 20px;
+    padding: 16px 18px 14px;
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 10px;
+    gap: 7px;
 }
 
 .project-tag {
     display: inline-block;
-    padding: 3px 10px;
+    padding: 2px 9px;
     border-radius: 99px;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -832,35 +834,39 @@ section { padding: 80px 0; }
 }
 
 .project-title {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 800;
     color: var(--text-primary);
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
 .project-card.dark .project-title { color: #fff; }
 
 .project-desc {
-    font-size: 0.87rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.55;
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.project-card.dark .project-desc { color: rgba(255,255,255,0.6); }
+.project-card.dark .project-desc { color: rgba(255,255,255,0.55); }
 
 .project-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    font-size: 0.82rem;
+    gap: 5px;
+    font-size: 0.78rem;
     font-weight: 700;
     color: var(--brand);
-    margin-top: 4px;
+    margin-top: 2px;
     transition: gap var(--transition);
 }
 
-.project-link:hover { gap: 10px; color: var(--brand-dark); }
+.project-link:hover { gap: 9px; color: var(--brand-dark); }
 
 /* =============================================
    ABOUT — BENTO GRID
@@ -1112,6 +1118,7 @@ section { padding: 80px 0; }
 .setup {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     width: 100%;
+    max-height: 240px;
     aspect-ratio: 4/3;
     display: flex;
     justify-content: center;
@@ -1124,7 +1131,7 @@ section { padding: 80px 0; }
     height: 100%;
     background-color: #c4b89a;
     border-radius: var(--radius-md);
-    padding: 18px;
+    padding: 10px;
     position: relative;
     overflow: hidden;
     border: 2px solid #8a7a5a;
@@ -1457,15 +1464,17 @@ footer {
     .home-location { grid-column: span 1; }
     .home-social   { grid-column: span 2; }
     .home-cta      { grid-column: span 1; }
-    .home-crt      { grid-column: span 3; grid-template-columns: 1fr 2fr; }
+    .home-crt      { grid-column: span 3; grid-template-columns: 280px 1fr; }
+
+    /* projects: drop to 3 cols */
+    .projects-bento { grid-template-columns: repeat(3, 1fr); }
+    .project-card      { grid-column: span 1; }
+    .project-card.wide { grid-column: span 2; }
+    .project-card.small{ grid-column: span 1; }
 
     .skill-card.wide   { grid-column: span 6; }
     .skill-card.narrow { grid-column: span 6; }
     .skill-card.full   { grid-column: span 12; }
-
-    .project-card      { grid-column: span 6; }
-    .project-card.wide { grid-column: span 12; }
-    .project-card.small{ grid-column: span 6; }
 
     .about-card.half  { grid-column: span 6; }
     .about-card.third { grid-column: span 6; }
@@ -1489,9 +1498,11 @@ footer {
     .home-crt       { grid-column: span 1; grid-template-columns: 1fr; }
     .home-crt-intro { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
 
-    .skill-card.wide, .skill-card.narrow, .skill-card.full { grid-column: span 12; }
+    /* projects: 2 cols on tablet */
+    .projects-bento { grid-template-columns: repeat(2, 1fr); }
+    .project-card, .project-card.wide, .project-card.small { grid-column: span 1; }
 
-    .project-card, .project-card.wide, .project-card.small { grid-column: span 12; }
+    .skill-card.wide, .skill-card.narrow, .skill-card.full { grid-column: span 12; }
 
     .about-card.half, .about-card.third, .about-card.wide { grid-column: span 12; }
     .about-bento .skill-card.wide,
@@ -1506,4 +1517,8 @@ footer {
     .hero-name { font-size: 2rem; }
     .hero-actions { flex-direction: column; }
     .hero-actions .btn { width: 100%; justify-content: center; }
+
+    /* projects: 1 col on phone */
+    .projects-bento { grid-template-columns: 1fr; }
+    .project-card, .project-card.wide, .project-card.small { grid-column: span 1; }
 }
