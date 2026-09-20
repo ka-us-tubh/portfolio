@@ -15,21 +15,21 @@ AOS.init({
 // ── Theme toggle ─────────────────────────────
 const themeToggle     = document.getElementById('theme-toggle');
 const mobileThemeBtn  = document.getElementById('mobile-theme-toggle');
+const topbarThemeBtn  = document.getElementById('mobile-topbar-theme');
 const themeTexts      = document.querySelectorAll('.sidebar-theme-text');
 
 function setTheme(theme) {
   document.documentElement.dataset.theme = theme;
   localStorage.setItem('portfolio-theme', theme);
-  // Update all theme-text labels (sidebar + mobile drawer)
   themeTexts.forEach((el) => {
     el.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
   });
   const label = `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`;
   themeToggle?.setAttribute('aria-label', label);
   mobileThemeBtn?.setAttribute('aria-label', label);
+  topbarThemeBtn?.setAttribute('aria-label', label);
 }
 
-// Sync on load
 setTheme(document.documentElement.dataset.theme || 'light');
 
 themeToggle?.addEventListener('click', () => {
@@ -37,6 +37,10 @@ themeToggle?.addEventListener('click', () => {
 });
 
 mobileThemeBtn?.addEventListener('click', () => {
+  setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+});
+
+topbarThemeBtn?.addEventListener('click', () => {
   setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
 });
 
@@ -68,8 +72,9 @@ mobileNav?.addEventListener('click', (e) => {
 window.closeMobileNav = closeMobileNav;
 
 // ── Active nav link on scroll ─────────────────
-const sections    = document.querySelectorAll('section[id]');
-const sidebarLinks = document.querySelectorAll('.sidebar-link');
+const sections      = document.querySelectorAll('section[id]');
+const sidebarLinks  = document.querySelectorAll('.sidebar-link');
+const topbarLinks   = document.querySelectorAll('.mobile-topbar-links a');
 
 function updateActiveLink() {
   const scrollY = window.scrollY + 120;
@@ -80,6 +85,10 @@ function updateActiveLink() {
   });
 
   sidebarLinks.forEach((a) => {
+    a.classList.toggle('active', a.dataset.section === current);
+  });
+
+  topbarLinks.forEach((a) => {
     a.classList.toggle('active', a.dataset.section === current);
   });
 }
