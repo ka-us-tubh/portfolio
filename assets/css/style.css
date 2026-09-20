@@ -1796,6 +1796,44 @@ section { padding: 80px 0; }
     box-shadow: 1px 1px 0 rgba(0,0,0,0.3);
 }
 
+.monitor-button:nth-child(1) {
+    background: #d94141;
+    animation: crt-red-blink 2.4s ease-in-out infinite;
+}
+
+.monitor-button:nth-child(2) {
+    background: #35b86b;
+    animation: crt-green-blink 1.8s ease-in-out infinite;
+    animation-delay: 0.35s;
+}
+
+@keyframes crt-red-blink {
+    0%, 100% {
+        background: #7d2929;
+        box-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+    }
+    45%, 60% {
+        background: #ff4d4d;
+        box-shadow: 0 0 10px rgba(255,77,77,0.75), 1px 1px 0 rgba(0,0,0,0.3);
+    }
+}
+
+@keyframes crt-green-blink {
+    0%, 100% {
+        background: #247d4b;
+        box-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+    }
+    45%, 60% {
+        background: #45e98a;
+        box-shadow: 0 0 10px rgba(69,233,138,0.75), 1px 1px 0 rgba(0,0,0,0.3);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .monitor-button:nth-child(1),
+    .monitor-button:nth-child(2) { animation: none; }
+}
+
 /* =============================================
    FOOTER
    ============================================= */
