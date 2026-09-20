@@ -404,12 +404,12 @@ section { padding: 80px 0; }
 .home-hero {
     grid-column: 1 / 3;
     grid-row: 1;
-    padding: 32px 36px;
+    padding: 32px 28px;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr minmax(0, 45%);
     grid-template-rows: 1fr auto;
-    column-gap: 28px;
-    min-height: 420px;
+    column-gap: 20px;
+    min-height: 380px;
     position: relative;
     overflow: hidden;
 }
@@ -419,14 +419,16 @@ section { padding: 80px 0; }
     grid-column: 1;
     grid-row: 1;
     align-self: start;
+    min-width: 0;
 }
 
-/* CRT — top-right, spanning both rows */
+/* CRT — top-right, spanning both rows — fluid width */
 .home-hero .home-crt-screen {
     grid-column: 2;
     grid-row: 1 / 3;
-    width: 520px;
-    flex-shrink: 0;
+    width: 100%;
+    min-width: 0;
+    flex-shrink: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1565,7 +1567,7 @@ section { padding: 80px 0; }
 .setup {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     width: 100%;
-    max-height: 400px;
+    max-height: min(400px, 55vh);
     aspect-ratio: 4/3;
     display: flex;
     justify-content: center;
@@ -1995,9 +1997,8 @@ footer {
     .home-crt      { grid-column: 1 / 3; grid-row: 4; grid-template-columns: 200px 1fr; }
     .home-cta      { grid-column: 3;     grid-row: 4; }
 
-    /* Shrink CRT in hero at tablet */
-    .home-hero .home-crt-screen { width: 360px; }
-    .setup { max-height: 300px; }
+    /* CRT shrinks naturally via minmax column — no fixed override needed */
+    .setup { max-height: min(300px, 45vh); }
 
     .projects-bento { grid-template-columns: repeat(3, 1fr); }
     .project-card { grid-column: span 1; }
@@ -2053,7 +2054,7 @@ footer {
 
     /* CRT setup shrinks to fit mobile */
     .setup {
-        max-height: 260px;
+        max-height: min(260px, 40vh);
         aspect-ratio: 4/3;
     }
 
