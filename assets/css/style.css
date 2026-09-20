@@ -313,7 +313,37 @@ section { padding: 80px 0; }
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     transition: transform var(--transition), box-shadow var(--transition);
+    position: relative;
 }
+
+/* Universal subtle dot-grid pattern on all light bento cards */
+.bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Dark cards get a white dot version */
+.bento-card.dark::before {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Brand/green/colored cards — finer white dots */
+.bento-card.brand::before,
+.bento-card.green::before,
+.bento-card.yellow::before,
+.bento-card.purple::before {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px);
+    background-size: 18px 18px;
+}
+
+/* Ensure all direct children of bento cards sit above the dot layer */
+.bento-card > * { position: relative; z-index: 1; }
 
 .bento-card:hover {
     transform: translateY(-4px);
@@ -1173,51 +1203,69 @@ section { padding: 80px 0; }
 /* keep content above patterns */
 .about-card > * { position: relative; z-index: 1; }
 
-/* ── dark about-card: dot grid top-right ── */
+/* ── light (white) about-card: subtle dark dot grid ── */
+/* ── light about-card: dot grid right half + faint ring ── */
+.about-card:not(.dark):not(.brand):not(.green)::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%; height: 100%;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.09) 1.5px, transparent 1.5px);
+    background-size: 16px 16px;
+    pointer-events: none; z-index: 0;
+}
+
+.about-card:not(.dark):not(.brand):not(.green)::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; right: -50px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 22px solid rgba(0,0,0,0.05);
+    pointer-events: none; z-index: 0;
+}
+
+/* ── dark about-card: dot grid + ring ── */
 .about-card.dark::before {
     content: '';
     position: absolute;
     top: 0; right: 0;
     width: 60%; height: 100%;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(circle, rgba(255,255,255,0.14) 1.5px, transparent 1.5px);
     background-size: 16px 16px;
     pointer-events: none; z-index: 0;
 }
 
-/* large faint ring — dark card */
 .about-card.dark::after {
     content: '';
     position: absolute;
     bottom: -50px; right: -50px;
     width: 160px; height: 160px;
     border-radius: 50%;
-    border: 24px solid rgba(255,255,255,0.05);
+    border: 24px solid rgba(255,255,255,0.06);
     pointer-events: none; z-index: 0;
 }
 
-/* ── brand (orange) about-card: diagonal lines ── */
+/* ── brand (orange) about-card: diagonal stripes + ring ── */
 .about-card.brand::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image: repeating-linear-gradient(
         -45deg,
-        transparent,
-        transparent 14px,
-        rgba(255,255,255,0.06) 14px,
-        rgba(255,255,255,0.06) 15px
+        transparent, transparent 14px,
+        rgba(255,255,255,0.07) 14px, rgba(255,255,255,0.07) 15px
     );
     pointer-events: none; z-index: 0;
 }
 
-/* large faint number echo — brand stat cards */
 .about-card.brand::after {
     content: '';
     position: absolute;
     bottom: -20px; right: -10px;
     width: 120px; height: 120px;
     border-radius: 50%;
-    border: 20px solid rgba(255,255,255,0.08);
+    border: 20px solid rgba(255,255,255,0.09);
     pointer-events: none; z-index: 0;
 }
 
@@ -1226,7 +1274,7 @@ section { padding: 80px 0; }
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(circle, rgba(255,255,255,0.16) 1.5px, transparent 1.5px);
     background-size: 18px 18px;
     pointer-events: none; z-index: 0;
 }
@@ -1237,7 +1285,7 @@ section { padding: 80px 0; }
     top: -60px; right: -60px;
     width: 200px; height: 200px;
     border-radius: 50%;
-    border: 32px solid rgba(255,255,255,0.07);
+    border: 32px solid rgba(255,255,255,0.08);
     pointer-events: none; z-index: 0;
 }
 
@@ -1342,6 +1390,17 @@ section { padding: 80px 0; }
 
 /* keep content above patterns */
 .skill-card > * { position: relative; z-index: 1; }
+
+/* light (white) skill card — subtle dark dot grid */
+.skill-card:not(.dark):not(.brand)::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%; height: 100%;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    pointer-events: none; z-index: 0;
+}
 
 /* dark skill card — fine dot grid on right */
 .skill-card.dark::before {
