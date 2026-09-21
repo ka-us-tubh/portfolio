@@ -278,7 +278,7 @@ section { padding: 80px 0; }
     border-radius: 99px;
     background: var(--bg-card);
     border: 1px solid var(--border);
-    font-size: 0.78rem;
+    font-size: 1.45rem;
     font-weight: 700;
     color: var(--brand);
     text-transform: uppercase;
@@ -458,7 +458,7 @@ section { padding: 80px 0; }
     font-weight: 700;
     color: var(--brand);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
     margin-bottom: 10px;
 }
 
@@ -992,7 +992,7 @@ section { padding: 80px 0; }
 }
 
 .location-value {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 700;
     color: #fff;
 }
@@ -1743,6 +1743,30 @@ section { padding: 80px 0; }
     border: 24px solid rgba(255,255,255,0.14);
     border-radius: 50%;
     z-index: -1;
+    box-shadow: inset 0 0 30px rgba(255,255,255,0.04);
+}
+
+.skill-card-number-pattern {
+    position: absolute;
+    top: 22px;
+    right: 16px;
+    z-index: 1;
+    color: rgba(255,255,255,0.72);
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    pointer-events: none;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.18);
+}
+
+.skill-showcase-card > *:not(.skill-card-number-pattern):not(.skill-glare) {
+    position: relative;
+    z-index: 1;
 }
 
 .skill-showcase-ml { --rest-y: -10px; --rest-rotate: -1.2deg; --float-distance: 26px; --float-rotate: 5deg; --float-duration: 6.3s; --float-delay: -3.3s; background: #e94b22; }
@@ -1759,7 +1783,9 @@ section { padding: 80px 0; }
     text-transform: uppercase;
 }
 
-.skill-card-number { align-self: flex-end; }
+.skill-card-number {
+    display: none;
+}
 
 .skill-showcase-icon {
     width: 58px;
@@ -1831,6 +1857,7 @@ section { padding: 80px 0; }
 @media (max-width: 768px) {
     .skills-showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
     .skill-showcase-card { aspect-ratio: 0.76; padding: 18px; }
+    .skill-card-number-pattern { top: 18px; right: 13px; font-size: 2.3rem; }
 }
 
 @media (max-width: 520px) {
