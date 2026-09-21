@@ -13,8 +13,8 @@
     --text-secondary: #5a5a5a;
     --text-muted:   #8a8a8a;
     --text-on-dark: #f0eeea;
-    --brand:        #ff6b35;
-    --brand-dark:   #e05a28;
+    --brand:        #ff3b0a;
+    --brand-dark:   #d92f00;
     --accent-green: #1a9a5e;
     --accent-yellow:#f5c518;
     --accent-blue:  #3b82f6;
@@ -44,8 +44,8 @@
     --text-secondary:#a0a0a0;
     --text-muted:   #6a6a6a;
     --text-on-dark: #f0f0f0;
-    --brand:        #ff6b35;
-    --brand-dark:   #ff8a5c;
+    --brand:        #ff3b0a;
+    --brand-dark:   #ff6a3a;
     --accent-green: #22c77a;
     --accent-yellow:#ffd23f;
     --accent-blue:  #60a5fa;
@@ -724,7 +724,7 @@ section { padding: 80px 0; }
 
 .home-crt-intro .crt-tip {
     font-size: 0.75rem;
-    color: rgba(255,107,53,0.8);
+    color: rgba(255,59,10,0.8);
 }
 
 .home-crt-screen {
@@ -1015,7 +1015,7 @@ section { padding: 80px 0; }
     background: var(--brand);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255,107,53,0.35);
+    box-shadow: 0 6px 20px rgba(255,59,10,0.35);
 }
 
 .btn-outline {
@@ -1208,8 +1208,8 @@ section { padding: 80px 0; }
 }
 
 .project-card.dark .project-tag {
-    background: rgba(255,107,53,0.15);
-    border-color: rgba(255,107,53,0.2);
+    background: rgba(255,59,10,0.15);
+    border-color: rgba(255,59,10,0.2);
 }
 
 .project-title {
@@ -1408,7 +1408,7 @@ section { padding: 80px 0; }
     color: var(--brand);
 }
 
-.about-card.dark  .about-card-sub { color: rgba(255,107,53,0.9); }
+.about-card.dark  .about-card-sub { color: rgba(255,59,10,0.9); }
 .about-card.brand .about-card-sub { color: rgba(255,255,255,0.8); }
 .about-card.green .about-card-sub { color: rgba(255,255,255,0.8); }
 
@@ -1771,7 +1771,7 @@ section { padding: 80px 0; }
 .terminal {
     width: 100%; height: 100%;
     padding: 10px;
-    color: #ff6b35;
+    color: var(--brand);
     font-size: 12px;
     display: flex;
     flex-direction: column;
@@ -1785,7 +1785,7 @@ section { padding: 80px 0; }
 #terminal-command {
     background: transparent;
     border: none;
-    color: #ff6b35;
+    color: var(--brand);
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     outline: none;
@@ -1817,7 +1817,7 @@ section { padding: 80px 0; }
 
 .window-header h3 { margin: 0; color: #111; font-size: 12px; }
 .window-buttons   { display: flex; gap: 4px; }
-.window-button    { width: 12px; height: 12px; background: #ff6b35; cursor: pointer; border: 2px solid #050505; border-radius: 2px; }
+.window-button    { width: 12px; height: 12px; background: var(--brand); cursor: pointer; border: 2px solid #050505; border-radius: 2px; }
 .window-button.maximize { background: #1bb8a8; }
 
 .window-content {
