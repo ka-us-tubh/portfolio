@@ -41,6 +41,7 @@
     <nav class="mobile-topbar-links">
       <a href="#home"  data-section="home">Home</a>
       <a href="#work"  data-section="work">Work</a>
+      <a href="#skills" data-section="skills">Skills</a>
       <a href="#about" data-section="about">About</a>
     </nav>
     <button class="mobile-topbar-theme" id="mobile-topbar-theme" type="button" aria-label="Switch color theme">
@@ -70,6 +71,10 @@
       <a href="#work"  class="sidebar-link" data-section="work">
         <span class="sidebar-link-icon"><i class="las la-layer-group" aria-hidden="true"></i></span>
         <span class="sidebar-link-text">Work</span>
+      </a>
+      <a href="#skills" class="sidebar-link" data-section="skills">
+        <span class="sidebar-link-icon"><i class="las la-cogs" aria-hidden="true"></i></span>
+        <span class="sidebar-link-text">Skills</span>
       </a>
       <a href="#about" class="sidebar-link" data-section="about">
         <span class="sidebar-link-icon"><i class="las la-user" aria-hidden="true"></i></span>
@@ -107,6 +112,7 @@
     <div class="mobile-drawer-inner">
       <a href="#home"  onclick="closeMobileNav()"><i class="las la-home"></i> Home</a>
       <a href="#work"  onclick="closeMobileNav()"><i class="las la-layer-group"></i> Work</a>
+      <a href="#skills" onclick="closeMobileNav()"><i class="las la-cogs"></i> Skills</a>
       <a href="#about" onclick="closeMobileNav()"><i class="las la-user"></i> About</a>
       <div class="mobile-drawer-divider"></div>
       <button class="mobile-theme-btn" id="mobile-theme-toggle" type="button">
@@ -455,10 +461,66 @@
       </div>
     </section>
 
-    <!-- ========== ABOUT + SKILLS ========== -->
+    <!-- ========== SKILLS ========== -->
+    <section id="skills">
+      <span class="section-label">Capabilities</span>
+      <h2 class="section-title">Skills I build with</h2>
+
+      <div class="skills-showcase">
+        <article class="skill-showcase-card skill-showcase-ml" data-aos="fade-up">
+          <span class="skill-card-number">01</span>
+          <div class="skill-showcase-icon"><i class="las la-brain" aria-hidden="true"></i></div>
+          <div class="skill-showcase-copy">
+            <p class="skill-showcase-label">01 / Foundations</p>
+            <h3>ML &amp; DL</h3>
+            <p>Models that learn from messy data and turn patterns into useful decisions.</p>
+          </div>
+          <div class="skill-showcase-tags"><span>Scikit-learn</span><span>PyTorch</span><span>TensorFlow</span><span>OpenCV</span></div>
+          <span class="skill-glare" aria-hidden="true"></span>
+        </article>
+
+        <article class="skill-showcase-card skill-showcase-genai" data-aos="fade-up" data-aos-delay="80">
+          <span class="skill-card-number">02</span>
+          <div class="skill-showcase-icon"><i class="las la-robot" aria-hidden="true"></i></div>
+          <div class="skill-showcase-copy">
+            <p class="skill-showcase-label">02 / Intelligence</p>
+            <h3>GenAI</h3>
+            <p>Agentic workflows and grounded language systems that are ready to ship.</p>
+          </div>
+          <div class="skill-showcase-tags"><span>LLMs</span><span>LangGraph</span><span>RAG</span><span>Hugging Face</span></div>
+          <span class="skill-glare" aria-hidden="true"></span>
+        </article>
+
+        <article class="skill-showcase-card skill-showcase-backend" data-aos="fade-up" data-aos-delay="160">
+          <span class="skill-card-number">03</span>
+          <div class="skill-showcase-icon"><i class="las la-server" aria-hidden="true"></i></div>
+          <div class="skill-showcase-copy">
+            <p class="skill-showcase-label">03 / Infrastructure</p>
+            <h3>Backend</h3>
+            <p>Reliable APIs and data services that give intelligent products a solid spine.</p>
+          </div>
+          <div class="skill-showcase-tags"><span>Python</span><span>FastAPI</span><span>Docker</span><span>MySQL</span></div>
+          <span class="skill-glare" aria-hidden="true"></span>
+        </article>
+
+        <article class="skill-showcase-card skill-showcase-frontend" data-aos="fade-up" data-aos-delay="240">
+          <span class="skill-card-number">04</span>
+          <div class="skill-showcase-icon"><i class="las la-code" aria-hidden="true"></i></div>
+          <div class="skill-showcase-copy">
+            <p class="skill-showcase-label">04 / Experience</p>
+            <h3>Frontend</h3>
+            <p>Clear interfaces that make complex tools feel immediate, tactile, and human.</p>
+          </div>
+          <div class="skill-showcase-tags"><span>React</span><span>JavaScript</span><span>HTML</span><span>Tailwind</span></div>
+          <span class="skill-glare" aria-hidden="true"></span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
     <section id="about">
       <span class="section-label">About</span>
-      <h2 class="section-title">Background &amp; Skills</h2>
+      <h2 class="section-title">Background</h2>
 
       <div class="about-bento">
 
@@ -508,96 +570,6 @@
             Generative AI &amp; LLMs · Agentic Systems · Quantum Machine Learning ·
             Recommendation Systems · Reinforcement Learning
           </p>
-        </div>
-
-
-               <!-- Gen/Agentic AI -->
-        <div class="bento-card dark skill-card narrow" data-aos="fade-up" data-aos-delay="140">
-          <div class="skill-card-header">
-            <div class="skill-icon" style="background:rgba(255,255,255,0.18);border:none;"><i class="las la-robot" aria-hidden="true"></i></div>
-            <h5>Gen &amp; Agentic AI</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">LLMs</span>
-            <span class="skill-tag">LangChain</span>
-            <span class="skill-tag">LangGraph</span>
-            <span class="skill-tag">Hugging Face</span>
-            <span class="skill-tag">RAG</span>
-          </div>
-        </div>
-
-        <!-- ML -->
-        <div class="bento-card skill-card narrow" data-aos="fade-up" data-aos-delay="60">
-          <div class="skill-card-header">
-            <div class="skill-icon"><i class="las la-chart-bar" aria-hidden="true"></i></div>
-            <h5>Machine Learning</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Scikit-learn</span>
-            <span class="skill-tag">Pandas</span>
-            <span class="skill-tag">NumPy</span>
-            <span class="skill-tag">Matplotlib</span>
-            <span class="skill-tag">Seaborn</span>
-          </div>
-        </div>
-
-        <!-- Deep Learning -->
-        <div class="bento-card dark skill-card narrow" data-aos="fade-up" data-aos-delay="100">
-          <div class="skill-card-header">
-            <div class="skill-icon"><i class="las la-brain" aria-hidden="true"></i></div>
-            <h5>Deep Learning</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">Keras</span>
-            <span class="skill-tag">OpenCV</span>
-            <span class="skill-tag">CNNs</span>
-          </div>
-        </div>
-
-
-
-         <!-- Backend -->
-        <div class="bento-card skill-card narrow" data-aos="fade-up">
-          <div class="skill-card-header">
-            <div class="skill-icon"><i class="las la-server" aria-hidden="true"></i></div>
-            <h5>Backend Engineering</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">FastAPI</span>
-            <span class="skill-tag">REST APIs</span>
-            <span class="skill-tag">MySQL</span>
-            <span class="skill-tag">Docker</span>
-          </div>
-        </div>
-
-        <!-- Frontend -->
-        <div class="bento-card dark skill-card narrow" data-aos="fade-up" data-aos-delay="180">
-          <div class="skill-card-header">
-            <div class="skill-icon"><i class="las la-code" aria-hidden="true"></i></div>
-            <h5>Frontend</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">ReactJS</span>
-            <span class="skill-tag">Tailwind CSS</span>
-            <span class="skill-tag">HTML</span>
-            <span class="skill-tag">JavaScript</span>
-          </div>
-        </div>
-
-        <!-- Quantum Computing -->
-        <div class="bento-card skill-card narrow" data-aos="fade-up" data-aos-delay="220">
-          <div class="skill-card-header">
-            <div class="skill-icon"><i class="las la-atom" aria-hidden="true"></i></div>
-            <h5>Quantum Computing</h5>
-          </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Qiskit</span>
-            <span class="skill-tag">QHED</span>
-            <span class="skill-tag">QML</span>
-          </div>
         </div>
 
       </div>

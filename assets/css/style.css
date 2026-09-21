@@ -1659,6 +1659,184 @@ section { padding: 80px 0; }
 .bento-card.brand .about-card-icon i { color: rgba(255,255,255,0.85); }
 .bento-card.green .about-card-icon i { color: rgba(255,255,255,0.85); }
 
+/* =============================================
+   SKILLS — TILTED SHOWCASE CARDS
+   ============================================= */
+.skills-showcase {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    perspective: 900px;
+    align-items: start;
+}
+
+.skill-showcase-card {
+    --rest-y: 0px;
+    --rest-rotate: 0deg;
+    --hover-y: 0px;
+    --hover-rotate: 0deg;
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    --glare-x: 50%;
+    --glare-y: 30%;
+    --float-distance: 24px;
+    --float-rotate: 4.5deg;
+    width: 100%;
+    aspect-ratio: 0.72;
+    min-height: 0;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 12px;
+    box-shadow: 0 18px 32px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.15);
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    transform: translateY(var(--rest-y)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) rotateZ(var(--rest-rotate));
+    transition: transform 0.45s cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 0.45s ease;
+    animation: skill-card-float var(--float-duration, 6s) ease-in-out var(--float-delay, 0s) infinite;
+}
+
+@keyframes skill-card-float {
+    0%, 100% {
+        transform: translateY(var(--rest-y)) rotateX(var(--tilt-x)) rotateY(calc(var(--tilt-y) - var(--float-rotate))) rotateZ(var(--rest-rotate));
+    }
+    50% {
+        transform: translateY(calc(var(--rest-y) - var(--float-distance))) rotateX(var(--tilt-x)) rotateY(calc(var(--tilt-y) + var(--float-rotate))) rotateZ(var(--rest-rotate));
+    }
+}
+
+@keyframes skill-glare-sweep {
+    0%, 100% { transform: translate3d(-7%, 0, 18px) rotateZ(-3deg); }
+    50% { transform: translate3d(7%, 0, 18px) rotateZ(3deg); }
+}
+
+.skill-showcase-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.5;
+    background-image: radial-gradient(rgba(255,255,255,0.16) 1px, transparent 1px);
+    background-size: 16px 16px;
+    mask-image: linear-gradient(135deg, transparent 15%, #000 75%);
+}
+
+.skill-showcase-card::after {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    right: -70px;
+    bottom: -70px;
+    border: 24px solid rgba(255,255,255,0.14);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.skill-showcase-ml { --rest-y: -10px; --rest-rotate: -1.2deg; --float-distance: 26px; --float-rotate: 5deg; --float-duration: 6.3s; --float-delay: -3.3s; background: #e94b22; }
+.skill-showcase-genai { --rest-y: 8px; --rest-rotate: 1.4deg; --float-distance: 30px; --float-rotate: 6deg; --float-duration: 7.2s; --float-delay: -2.4s; background: #151515; }
+.skill-showcase-backend { --rest-y: -3px; --rest-rotate: -0.8deg; --float-distance: 24px; --float-rotate: 4.5deg; --float-duration: 5.8s; --float-delay: -4.1s; background: #207a59; }
+.skill-showcase-frontend { --rest-y: 16px; --rest-rotate: 1.7deg; --float-distance: 28px; --float-rotate: 5.5deg; --float-duration: 6.6s; --float-delay: -1.1s; background: #3159a5; }
+
+.skill-card-number,
+.skill-showcase-label {
+    color: rgba(255,255,255,0.64);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.skill-card-number { align-self: flex-end; }
+
+.skill-showcase-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    font-size: 1.45rem;
+}
+
+.skill-showcase-copy { margin-top: auto; padding-top: 34px; }
+
+.skill-showcase-copy h3 {
+    margin: 7px 0 10px;
+    color: #fff;
+    font-size: clamp(1.7rem, 2.5vw, 2.35rem);
+    letter-spacing: -0.04em;
+}
+
+.skill-showcase-copy > p:last-child {
+    max-width: 24ch;
+    color: rgba(255,255,255,0.72);
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.skill-showcase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 24px;
+}
+
+.skill-showcase-tags span {
+    padding: 5px 9px;
+    border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 99px;
+    color: rgba(255,255,255,0.82);
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.skill-glare {
+    position: absolute;
+    inset: -40%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.28;
+    background:
+        radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255,255,255,0.38), transparent 24%),
+        linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.34) 48%, rgba(255,255,255,0.06) 53%, transparent 64%);
+    mix-blend-mode: soft-light;
+    transform: translateZ(18px);
+    animation: skill-glare-sweep 7s ease-in-out infinite;
+    transition: opacity 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+    .skills-showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .skill-showcase-card { aspect-ratio: 0.78; }
+}
+
+@media (max-width: 768px) {
+    .skills-showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .skill-showcase-card { aspect-ratio: 0.76; padding: 18px; }
+}
+
+@media (max-width: 520px) {
+    .skills-showcase { grid-template-columns: 1fr; }
+    .skill-showcase-card { width: min(100%, 360px); justify-self: center; aspect-ratio: 0.72; }
+    .skill-showcase-ml,
+    .skill-showcase-genai,
+    .skill-showcase-backend,
+    .skill-showcase-frontend { --rest-y: 0px; --rest-rotate: 0deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-showcase-card { animation: none; transition: box-shadow 0.2s ease; }
+    .skill-glare { animation: none; }
+}
+
 /* skills-bento is now inside about-bento — same grid, no extra wrapper needed */
 .about-bento .skill-card.wide   { grid-column: span 6; }
 .about-bento .skill-card.narrow { grid-column: span 4; }
