@@ -1405,6 +1405,54 @@ section { padding: 80px 0; }
 .about-card.third { grid-column: span 4; }
 .about-card.wide  { grid-column: span 8; }
 
+.experience-card {
+    min-height: 310px;
+    padding: 38px 36px;
+    justify-content: center;
+}
+
+.experience-card .about-card-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+}
+
+.experience-card .about-card-label { font-size: 0.82rem; }
+.experience-card .about-card-title {
+    font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+}
+.experience-card .about-card-sub { font-size: 1rem; }
+.experience-card .about-card-desc {
+    max-width: 78ch;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.achievement-card {
+    justify-content: flex-start;
+    gap: 10px;
+    background: var(--accent-purple);
+}
+
+.achievement-card .about-card-icon {
+    background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.achievement-card .about-card-label,
+.achievement-card .about-card-desc { color: rgba(255,255,255,0.74); }
+
+.achievement-card .about-card-title { color: #fff; }
+
+.achievement-stat {
+    margin-top: 0;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: clamp(3.8rem, 6vw, 5.6rem);
+    font-weight: 900;
+    line-height: 0.95;
+}
+
 .about-card-icon {
     width: 44px; height: 44px;
     border-radius: var(--radius-sm);
@@ -2406,6 +2454,7 @@ footer {
     .about-card.half  { grid-column: span 6; }
     .about-card.third { grid-column: span 6; }
     .about-card.wide  { grid-column: span 12; }
+    .experience-card { min-height: 280px; }
 }
 
 
