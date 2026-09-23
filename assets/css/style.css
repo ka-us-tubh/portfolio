@@ -593,6 +593,16 @@ section { padding: 80px 0; }
     overflow: hidden;
 }
 
+[data-theme="light"] .home-location {
+    background: #fff;
+    border-color: var(--border);
+    color: #000;
+}
+
+[data-theme="light"] .home-location::before {
+    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+
 .home-ticker {
     position: relative;
     min-height: 76px;
@@ -653,6 +663,20 @@ section { padding: 80px 0; }
     stroke-linecap: square;
     stroke-linejoin: miter;
     filter: drop-shadow(0 4px 0 rgba(138,48,20,0.4));
+}
+
+[data-theme="light"] .home-location .location-label,
+[data-theme="light"] .home-location .location-value {
+    color: #000;
+}
+
+[data-theme="light"] .home-location .location-detail {
+    color: rgba(0,0,0,0.62);
+}
+
+[data-theme="light"] .home-location .home-ticker-arrow path {
+    stroke: rgba(0,0,0,0.95);
+    filter: drop-shadow(0 4px 0 rgba(0,0,0,0.16));
 }
 
 @keyframes home-ticker-train {
@@ -1496,6 +1520,52 @@ section { padding: 80px 0; }
     line-height: 1.7;
 }
 
+.experience-date {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+}
+
+[data-theme="light"] .experience-card {
+    background: #fff;
+    border-color: var(--border);
+    color: #000;
+}
+
+[data-theme="light"] .experience-card::before {
+    background-image: radial-gradient(circle, rgba(0,0,0,0.09) 1.5px, transparent 1.5px);
+}
+
+[data-theme="light"] .experience-card::after {
+    border-color: rgba(0,0,0,0.05);
+}
+
+[data-theme="light"] .experience-card .about-card-icon {
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border);
+    color: #000;
+}
+
+[data-theme="light"] .experience-card .about-card-label {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .experience-card .about-card-title {
+    color: #000;
+}
+
+[data-theme="light"] .experience-card .about-card-sub {
+    color: var(--brand);
+}
+
+[data-theme="light"] .experience-card .about-card-desc {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .experience-card .experience-date {
+    color: var(--text-muted) !important;
+}
+
 .achievement-card {
     justify-content: flex-start;
     gap: 10px;
@@ -1603,6 +1673,32 @@ section { padding: 80px 0; }
 .about-card.brand .about-stat-label { color: rgba(255,255,255,0.7); }
 .about-card.green .about-stat-label { color: rgba(255,255,255,0.7); }
 .about-card.dark  .about-stat-label { color: rgba(255,255,255,0.5); }
+
+[data-theme="light"] .about-card.dark.experience-card .about-card-icon {
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border);
+    color: #000;
+}
+
+[data-theme="light"] .about-card.dark.experience-card .about-card-label {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .about-card.dark.experience-card .about-card-title {
+    color: #000;
+}
+
+[data-theme="light"] .about-card.dark.experience-card .about-card-sub {
+    color: var(--brand);
+}
+
+[data-theme="light"] .about-card.dark.experience-card .about-card-desc {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .about-card.dark.experience-card .experience-date {
+    color: var(--text-muted) !important;
+}
 
 /* =============================================
    SKILL CARDS (inside About bento)
@@ -1774,6 +1870,10 @@ section { padding: 80px 0; }
 .bento-card.dark  .about-card-icon i { color: rgba(255,255,255,0.6); }
 .bento-card.brand .about-card-icon i { color: rgba(255,255,255,0.85); }
 .bento-card.green .about-card-icon i { color: rgba(255,255,255,0.85); }
+
+[data-theme="light"] .about-card.dark.experience-card .about-card-icon i {
+    color: #000;
+}
 
 /* =============================================
    SKILLS — TILTED SHOWCASE CARDS
