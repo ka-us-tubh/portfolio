@@ -195,6 +195,9 @@ p { color: var(--text-secondary); line-height: 1.7; }
     text-transform: uppercase;
     letter-spacing: 0.06em;
     line-height: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
 }
 
 /* Spacer — not needed for auto-height sidebar */
@@ -1110,14 +1113,49 @@ section { padding: 80px 0; }
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
+    counter-reset: project;
 }
 
 .project-card {
+    counter-increment: project;
     grid-column: span 1;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
+    background: #fff;
+    border-color: var(--border);
+    color: var(--text-primary);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.bento-card.project-card,
+.bento-card.project-card.dark {
+    background: #fff;
+}
+
+.project-card::before,
+.project-card.dark::before {
+    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 16px 16px;
+}
+
+.project-card::after {
+    content: counter(project, decimal-leading-zero);
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    pointer-events: none;
 }
 
 /* wide spans 2, small stays 1 */
@@ -1129,7 +1167,7 @@ section { padding: 80px 0; }
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    background: var(--bg-card-alt);
+    background: transparent;
     flex-shrink: 0;
     position: relative;
 }
@@ -1144,16 +1182,13 @@ section { padding: 80px 0; }
   with a unique SVG shape layered on top per project.
 */
 .proj-pattern {
-    background-color: #f5f4f0;
-    /* fine dot grid */
-    background-image: radial-gradient(circle, rgba(0,0,0,0.25) 1px, transparent 1px);
-    background-size: 12px 12px;
-    transition: background-color var(--transition);
+    background-color: transparent;
+    background-image: none;
 }
 
 .bento-card.dark .proj-pattern {
-    background-color: #1a1a1a;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-color: transparent;
+    background-image: none;
 }
 
 .proj-pattern-inner {
@@ -1162,11 +1197,20 @@ section { padding: 80px 0; }
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform var(--transition);
+    transform: scale(0.8);
+    opacity: 0.68;
 }
 
-.project-card:hover .proj-pattern-inner {
-    transform: scale(1.04);
+/* In dark mode, light-card SVGs are inverted for contrast. */
+[data-theme="dark"] .project-card:not(.dark) .proj-pattern-inner {
+    filter: invert(1);
+}
+
+/* The SVGs used by legacy `.dark` cards are light artwork, so reverse them
+   to ink on the white light-theme cards. */
+[data-theme="light"] .project-card.dark .proj-pattern-inner {
+    filter: invert(1) contrast(1.2);
+    opacity: 0.82;
 }
 
 /* SVG shapes via background-image — each unique to the project theme */
@@ -1235,40 +1279,36 @@ section { padding: 80px 0; }
     background-size: 75%;
 }
 
-/* light card — dark SVG strokes; dark card uses light strokes (already encoded in SVGs above) */
-.project-card:hover .proj-pattern {
-    background-color: #ececea;
-}
-.bento-card.dark .project-card:hover .proj-pattern,
-.bento-card.dark:hover .proj-pattern {
-    background-color: #242424;
-}
-
 .project-body {
     padding: 16px 18px 14px;
     display: flex;
     flex-direction: column;
     flex: 1;
     gap: 7px;
+    position: static;
 }
 
-.project-tag {
-    display: inline-block;
-    padding: 2px 9px;
+.project-card .project-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 7px;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 3;
     border-radius: 99px;
-    font-size: 0.68rem;
+    font-size: 0.95rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    background: var(--bg-card-alt);
+    line-height: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
     color: var(--brand);
-    border: 1px solid var(--border);
+    border: 0;
     width: fit-content;
-}
-
-.project-card.dark .project-tag {
-    background: rgba(255,59,10,0.15);
-    border-color: rgba(255,59,10,0.2);
 }
 
 .project-title {
@@ -1277,8 +1317,6 @@ section { padding: 80px 0; }
     color: var(--text-primary);
     line-height: 1.25;
 }
-
-.project-card.dark .project-title { color: #fff; }
 
 .project-desc {
     font-size: 0.8rem;
@@ -1290,8 +1328,6 @@ section { padding: 80px 0; }
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-
-.project-card.dark .project-desc { color: rgba(255,255,255,0.55); }
 
 .project-link {
     display: inline-flex;
@@ -1305,6 +1341,25 @@ section { padding: 80px 0; }
 }
 
 .project-link:hover { gap: 9px; color: var(--brand-dark); }
+
+/* Keep the high-contrast project treatment in dark mode only. */
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .bento-card.project-card,
+[data-theme="dark"] .bento-card.project-card.dark {
+    background: #0b0b0b;
+    border-color: rgba(255,255,255,0.24);
+    color: #fff;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] .project-card::before,
+[data-theme="dark"] .project-card.dark::before {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+}
+
+[data-theme="dark"] .project-card::after { color: rgba(255,255,255,0.72); }
+[data-theme="dark"] .project-title { color: #fff; }
+[data-theme="dark"] .project-desc { color: rgba(255,255,255,0.7); }
 
 /* =============================================
    ABOUT — BENTO GRID
