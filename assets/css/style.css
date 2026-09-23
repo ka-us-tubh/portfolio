@@ -662,7 +662,6 @@ section { padding: 80px 0; }
     stroke-width: 11;
     stroke-linecap: square;
     stroke-linejoin: miter;
-    filter: drop-shadow(0 4px 0 rgba(138,48,20,0.4));
 }
 
 [data-theme="light"] .home-location .location-label,
@@ -676,7 +675,6 @@ section { padding: 80px 0; }
 
 [data-theme="light"] .home-location .home-ticker-arrow path {
     stroke: rgba(0,0,0,0.95);
-    filter: drop-shadow(0 4px 0 rgba(0,0,0,0.16));
 }
 
 @keyframes home-ticker-train {
