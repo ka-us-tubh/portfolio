@@ -278,9 +278,13 @@ function selectProjectFloor(index) {
   });
 }
 
-// Attach floor click and keyboard listeners
+// Attach floor click and keyboard listeners (only cards are clickable)
 towerFloors.forEach((floor) => {
-  floor.addEventListener('click', () => {
+  floor.addEventListener('click', (e) => {
+    // Labels are non-clickable readouts; only the card body is clickable
+    if (e.target.closest('.floor-callout')) {
+      return;
+    }
     const idx = floor.dataset.projectIndex;
     if (idx !== undefined) {
       selectProjectFloor(idx);

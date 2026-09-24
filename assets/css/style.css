@@ -1335,20 +1335,17 @@ section { padding: 80px 0; }
 /* ── LEADER LINES & BILLBOARDED LABELS ────── */
 .floor-callout {
     position: absolute;
-    left: 100%;
-    top: 50%;
     left: calc(100% - 4px);
     top: calc(100% - 4px);
     display: flex;
     align-items: center;
     transform-origin: left center;
-    /* Inverse 3D rotation so labels face camera flat, elevated in Z space */
-    transform: translateZ(8px) rotateZ(42deg) rotateX(-58deg) translateZ(8px);
     /* Inverse 3D rotation so labels face camera flat, elevated above card surface */
     transform: translateZ(6px) rotateZ(42deg) rotateX(-58deg) translateZ(6px);
-    pointer-events: auto;
+    pointer-events: none;
     z-index: 200;
-    cursor: pointer;
+    cursor: default;
+    user-select: none;
 }
 
 .callout-line {
@@ -1359,6 +1356,7 @@ section { padding: 80px 0; }
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
     position: relative;
     z-index: 2;
+    pointer-events: none;
     transition: all 0.3s ease;
 }
 
@@ -1405,6 +1403,9 @@ section { padding: 80px 0; }
     box-shadow: 0 4px 14px rgba(0,0,0,0.4);
     position: relative;
     z-index: 2;
+    pointer-events: none;
+    cursor: default;
+    user-select: none;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1438,36 +1439,31 @@ section { padding: 80px 0; }
     background: rgba(0, 0, 0, 0.06);
 }
 
-/* Callout hover */
-.scd-floor:hover .callout-line,
-.floor-callout:hover .callout-line {
+/* Callout hover (triggered only when hovering the card) */
+.scd-floor:hover .callout-line {
     background: #38bdf8;
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
 }
 
-.scd-floor:hover .callout-line::before,
-.floor-callout:hover .callout-line::before {
+.scd-floor:hover .callout-line::before {
     background: #38bdf8;
     box-shadow: 0 0 10px #38bdf8;
 }
 
-.scd-floor:hover .callout-label,
-.floor-callout:hover .callout-label {
+.scd-floor:hover .callout-label {
     background: rgba(23, 31, 48, 0.96);
     border-color: #38bdf8;
     color: #fff;
     box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
 }
 
-[data-theme="light"] .scd-floor:hover .callout-label,
-[data-theme="light"] .floor-callout:hover .callout-label {
+[data-theme="light"] .scd-floor:hover .callout-label {
     background: #fff;
     border-color: #0284c7;
     color: #0f172a;
 }
 
-.scd-floor:hover .callout-num,
-.floor-callout:hover .callout-num {
+.scd-floor:hover .callout-num {
     color: #38bdf8;
 }
 
