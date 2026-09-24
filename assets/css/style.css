@@ -62,7 +62,11 @@
    ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    overflow-x: hidden;
+}
 
 body {
     background-color: var(--bg);
@@ -71,6 +75,7 @@ body {
     line-height: 1.6;
     transition: background-color var(--transition), color var(--transition);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -1129,13 +1134,479 @@ section { padding: 80px 0; }
 }
 
 /* =============================================
-   PROJECTS — BENTO GRID
+   PROJECTS — ISOMETRIC TOWER SHOWCASE
    ============================================= */
-.projects-bento {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    counter-reset: project;
+.work-section-header {
+    max-width: 1020px;
+    margin: 0 auto 36px;
+}
+
+.projects-isometric-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    min-height: 480px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(75px, 7vw, 110px);
+    padding: 10px 0 30px;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+[data-theme="light"] .projects-isometric-stage {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* ── TOWER WRAPPER (LEFT) ────────────────── */
+.tower-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 520px;
+    width: 530px;
+    flex-shrink: 0;
+    z-index: 5;
+}
+
+/* ── 3D SCENE ────────────────────────────── */
+.scd-tower-scene {
+    perspective: 1300px;
+    perspective-origin: 50% 40%;
+    position: relative;
+    width: 520px;
+    width: 530px;
+    height: 440px;
+    margin: 0;
+}
+
+.scd-tower {
+    position: absolute;
+    left: 45px;
+    top: 200px;
+    left: 20px;
+    top: 190px;
+    width: 180px;
+    height: 180px;
+    transform-style: preserve-3d;
+    transform: rotateX(58deg) rotateZ(-42deg);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+}
+
+.scd-tower:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 16px;
+    border-radius: 12px;
+}
+
+/* ── FLOORS (BLACK PLAIN CARDS) ──────────── */
+.scd-floor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 14px;
+    /* Black plain cards with smooth obsidian finish */
+    background: linear-gradient(145deg, #1c1f28 0%, #111318 60%, #0a0b0e 100%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transform: translateZ(calc(var(--i) * 30px));
+    box-shadow: none;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    z-index: calc(var(--i) + 1);
+}
+
+/* No bottom slab / black shadow part */
+.scd-floor::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* Subtle dashed geometric inner boundary */
+.scd-floor::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+}
+
+/* Monospace floor index number */
+.floor-num {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    font-family: monospace;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.32);
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+/* Lift floors apart on hover */
+.scd-tower:hover .scd-floor,
+.scd-tower:focus-visible .scd-floor {
+    transform: translateZ(calc(var(--i) * 50px + 6px));
+}
+
+/* Floor hover state */
+.scd-floor:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+    background: linear-gradient(145deg, #252b38 0%, #151821 100%);
+    z-index: 60;
+}
+
+.scd-floor:hover .floor-num {
+    color: #38bdf8;
+}
+
+/* Active floor (selected) */
+.scd-floor.is-active {
+    border-color: var(--brand) !important;
+    box-shadow: 0 0 24px var(--brand-glow) !important;
+    background: linear-gradient(145deg, #2a2a20 0%, #171811 100%) !important;
+    z-index: 60;
+}
+
+.scd-floor.is-active .floor-num {
+    color: var(--brand);
+}
+
+/* ── LIGHT THEME TOWER CARD OVERRIDES ────── */
+[data-theme="light"] .scd-floor {
+    background: linear-gradient(145deg, #ffffff 0%, #f6f5f0 60%, #ece9e2 100%);
+    border-color: rgba(0, 0, 0, 0.18);
+    box-shadow: none;
+}
+
+
+
+[data-theme="light"] .scd-floor::after {
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .scd-floor .floor-num {
+    color: rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .scd-floor:hover {
+    border-color: #0284c7;
+    box-shadow: 0 0 20px rgba(2, 132, 199, 0.25);
+    background: linear-gradient(145deg, #ffffff 0%, #edf7ff 100%);
+}
+
+[data-theme="light"] .scd-floor:hover .floor-num {
+    color: #0284c7;
+}
+
+[data-theme="light"] .scd-floor.is-active {
+    border-color: var(--brand) !important;
+    box-shadow: 0 0 24px rgba(255, 59, 10, 0.25) !important;
+    background: linear-gradient(145deg, #fffcfb 0%, #fff2ee 100%) !important;
+}
+
+[data-theme="light"] .scd-floor.is-active .floor-num {
+    color: var(--brand);
+}
+
+/* ── LEADER LINES & BILLBOARDED LABELS ────── */
+.floor-callout {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    left: calc(100% - 4px);
+    top: calc(100% - 4px);
+    display: flex;
+    align-items: center;
+    transform-origin: left center;
+    /* Inverse 3D rotation so labels face camera flat, elevated in Z space */
+    transform: translateZ(8px) rotateZ(42deg) rotateX(-58deg) translateZ(8px);
+    /* Inverse 3D rotation so labels face camera flat, elevated above card surface */
+    transform: translateZ(6px) rotateZ(42deg) rotateX(-58deg) translateZ(6px);
+    pointer-events: auto;
+    z-index: 200;
+    cursor: pointer;
+}
+
+.callout-line {
+    width: 36px;
+    height: 2px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .callout-line {
+    background: rgba(15, 23, 42, 0.7);
+    box-shadow: none;
+}
+
+/* Anchor dot at card edge */
+.callout-line::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px #fff;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+[data-theme="light"] .callout-line::before {
+    background: #0f172a;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.callout-label {
+    margin-left: 0;
+    padding: 5px 10px;
+    background: rgba(18, 21, 30, 0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #f1f5f9;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 2;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .callout-label {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(0, 0, 0, 0.14);
+    color: #1e293b;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.callout-num {
+    color: var(--text-muted);
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.callout-title {
+    font-weight: 700;
+}
+
+.callout-tag {
+    font-size: 10px;
+    opacity: 0.75;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+[data-theme="light"] .callout-tag {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* Callout hover */
+.scd-floor:hover .callout-line,
+.floor-callout:hover .callout-line {
+    background: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+}
+
+.scd-floor:hover .callout-line::before,
+.floor-callout:hover .callout-line::before {
+    background: #38bdf8;
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+.scd-floor:hover .callout-label,
+.floor-callout:hover .callout-label {
+    background: rgba(23, 31, 48, 0.96);
+    border-color: #38bdf8;
+    color: #fff;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+}
+
+[data-theme="light"] .scd-floor:hover .callout-label,
+[data-theme="light"] .floor-callout:hover .callout-label {
+    background: #fff;
+    border-color: #0284c7;
+    color: #0f172a;
+}
+
+.scd-floor:hover .callout-num,
+.floor-callout:hover .callout-num {
+    color: #38bdf8;
+}
+
+/* Callout active */
+.scd-floor.is-active .callout-line {
+    background: var(--brand) !important;
+    box-shadow: 0 0 10px var(--brand-glow) !important;
+}
+
+.scd-floor.is-active .callout-line::before {
+    background: var(--brand) !important;
+    box-shadow: 0 0 12px var(--brand) !important;
+}
+
+.scd-floor.is-active .callout-label {
+    background: rgba(35, 33, 20, 0.96);
+    border-color: var(--brand);
+    color: #fff;
+    box-shadow: 0 0 20px var(--brand-glow);
+}
+
+[data-theme="light"] .scd-floor.is-active .callout-label {
+    background: #fff;
+    border-color: #d97706;
+    color: #111;
+}
+
+.scd-floor.is-active .callout-num {
+    color: var(--brand);
+}
+
+/* ── HINT BAR ────────────────────────────── */
+.tower-hint-bar {
+    margin-top: 16px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* ── RIGHT SIDE: SELECTED PROJECT DISPLAY ── */
+.tower-project-pane {
+    width: 340px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.tower-card-viewport {
+    width: 340px;
+    max-width: 100%;
+    position: relative;
+}
+
+.tower-cards-list .project-card {
+    display: none;
+    width: 340px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-shadow: var(--shadow-lg, 0 16px 36px rgba(0,0,0,0.25));
+}
+
+.tower-cards-list .project-card.is-active {
+    display: flex;
+    animation: projectCardAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes projectCardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.project-card[data-card-num]::after {
+    content: attr(data-card-num);
+}
+
+/* ── RESPONSIVE ISOMETRIC TOWER ─────────── */
+@media (max-width: 1160px) {
+    .projects-isometric-stage {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 24px;
+    }
+
+    .tower-wrapper {
+        width: 100%;
+        max-width: 100%;
+        align-items: center;
+        transform: scale(0.82);
+        margin-bottom: -15px;
+    }
+
+    .tower-project-pane {
+        width: 100%;
+        max-width: 100%;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-isometric-stage {
+        padding: 10px 0;
+        min-height: 500px;
+    }
+
+    .tower-wrapper {
+        transform: scale(0.68);
+        margin-bottom: -35px;
+    }
+
+    .callout-line {
+        width: 24px;
+    }
+
+    .callout-label {
+        padding: 4px 8px;
+        font-size: 11px;
+        gap: 5px;
+    }
+
+    .callout-tag {
+        display: none;
+    }
 }
 
 .project-card {
@@ -1159,7 +1630,7 @@ section { padding: 80px 0; }
 
 .project-card::before,
 .project-card.dark::before {
-    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='1.2' fill='%23000000' fill-opacity='0.14'/%3E%3C/svg%3E");
     background-size: 16px 16px;
 }
 
@@ -1386,7 +1857,8 @@ section { padding: 80px 0; }
 
 [data-theme="dark"] .project-card::before,
 [data-theme="dark"] .project-card.dark::before {
-    background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='1.2' fill='%23ffffff' fill-opacity='0.16'/%3E%3C/svg%3E");
+    background-size: 16px 16px;
 }
 
 [data-theme="dark"] .project-card::after { color: rgba(255,255,255,0.72); }

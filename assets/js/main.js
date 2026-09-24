@@ -258,3 +258,43 @@ document.querySelectorAll('.desktop-icon').forEach((icon) => {
     }
   });
 });
+
+// ── Projects: Isometric Tower Controller ──────
+const towerFloors = document.querySelectorAll('.scd-floor');
+const towerCards  = document.querySelectorAll('.tower-cards-list .project-card');
+
+function selectProjectFloor(index) {
+  // Toggle active floor
+  towerFloors.forEach((floor) => {
+    const isTarget = floor.dataset.projectIndex === String(index);
+    floor.classList.toggle('is-active', isTarget);
+    floor.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+  });
+
+  // Activate matching project card
+  towerCards.forEach((card) => {
+    const isTarget = card.dataset.projectCard === String(index);
+    card.classList.toggle('is-active', isTarget);
+  });
+}
+
+// Attach floor click and keyboard listeners
+towerFloors.forEach((floor) => {
+  floor.addEventListener('click', () => {
+    const idx = floor.dataset.projectIndex;
+    if (idx !== undefined) {
+      selectProjectFloor(idx);
+    }
+  });
+
+  floor.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const idx = floor.dataset.projectIndex;
+      if (idx !== undefined) {
+        selectProjectFloor(idx);
+      }
+    }
+  });
+});
+

@@ -348,113 +348,231 @@
       <span class="section-label">Work</span>
       <h2 class="section-title">Projects</h2>
 
-      <div class="projects-bento">
-                
-        <!-- trancribe -->
-        <div class="bento-card project-card" data-aos="fade-up">
-          <div class="project-img proj-pattern proj-pipe">
-            <div class="proj-pattern-inner"></div>
+      <div class="projects-isometric-stage" id="projectsTowerStage" data-aos="fade-up">
+        <!-- Isometric Tower Container (Left/Center) -->
+        <div class="tower-wrapper">
+          <div class="scd-tower-scene">
+            <div class="scd-tower" id="isometricTower" tabindex="0" role="region" aria-label="Isometric tower of project cards">
+              
+              <!-- Floor 01: Transcribe -->
+              <div class="scd-floor is-active" style="--i:7" data-project-index="0" role="button" tabindex="0" aria-label="View project: Transcribe" aria-selected="true">
+                <span class="floor-num">01</span>
+                <div class="floor-callout">
+                  <div class="callout-line"></div>
+                  <div class="callout-label">
+                    <span class="callout-num">01</span>
+                    <strong class="callout-title">Transcribe</strong>
+                    <span class="callout-tag">Gen-AI</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floor 02: Tooth Finder -->
+              <div class="scd-floor" style="--i:6" data-project-index="1" role="button" tabindex="0" aria-label="View project: Tooth Finder">
+                <span class="floor-num">02</span>
+                <div class="floor-callout">
+                  <div class="callout-line"></div>
+                  <div class="callout-label">
+                    <span class="callout-num">02</span>
+                    <strong class="callout-title">Tooth Finder</strong>
+                    <span class="callout-tag">Computer Vision</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floor 03: Portal Valley -->
+              <div class="scd-floor" style="--i:5" data-project-index="2" role="button" tabindex="0" aria-label="View project: Portal Valley">
+                <span class="floor-num">03</span>
+                <div class="floor-callout">
+                  <div class="callout-line"></div>
+                  <div class="callout-label">
+                    <span class="callout-num">03</span>
+                    <strong class="callout-title">Portal Valley</strong>
+                    <span class="callout-tag">Game Dev</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floor 04: TwinTower-RecSys -->
+              <div class="scd-floor" style="--i:4" data-project-index="3" role="button" tabindex="0" aria-label="View project: TwinTower-RecSys">
+                <span class="floor-num">04</span>
+                <div class="floor-callout">
+                  <div class="callout-line"></div>
+                  <div class="callout-label">
+                    <span class="callout-num">04</span>
+                    <strong class="callout-title">TwinTower-RecSys</strong>
+                    <span class="callout-tag">ML Systems</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floor 05: Moon_Lander -->
+              <div class="scd-floor" style="--i:3" data-project-index="4" role="button" tabindex="0" aria-label="View project: Moon_Lander">
+                <span class="floor-num">05</span>
+                <div class="floor-callout">
+                  <div class="callout-line"></div>
+                  <div class="callout-label">
+                    <span class="callout-num">05</span>
+                    <strong class="callout-title">Moon_Lander</strong>
+                    <span class="callout-tag">RL</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floor 06: Quantum Edge Detection -->
+              <div class="scd-floor" style="--i:2" data-project-index="5" role="button" tabindex="0" aria-label="View project: Quantum Edge Detection">
+                <span class="floor-num">06</span>
+                <div class="floor-callout">
+                  <div class="callout-line"></div>
+                  <div class="callout-label">
+                    <span class="callout-num">06</span>
+                    <strong class="callout-title">Quantum Edge Detection</strong>
+                    <span class="callout-tag">Quantum Computing</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floor 07: Quantum Teleportation -->
+              <div class="scd-floor" style="--i:1" data-project-index="6" role="button" tabindex="0" aria-label="View project: Quantum Teleportation">
+                <span class="floor-num">07</span>
+                <div class="floor-callout">
+                  <div class="callout-line"></div>
+                  <div class="callout-label">
+                    <span class="callout-num">07</span>
+                    <strong class="callout-title">Quantum Teleportation</strong>
+                    <span class="callout-tag">Quantum Computing</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floor 08: Grover Algorithm -->
+              <div class="scd-floor" style="--i:0" data-project-index="7" role="button" tabindex="0" aria-label="View project: Grover Algorithm">
+                <span class="floor-num">08</span>
+                <div class="floor-callout">
+                  <div class="callout-line"></div>
+                  <div class="callout-label">
+                    <span class="callout-num">08</span>
+                    <strong class="callout-title">Grover Algorithm</strong>
+                    <span class="callout-tag">Quantum Algorithms</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <div class="project-body">
-            <span class="project-tag">Gen-AI</span>
-            <h3 class="project-title">Transcribe</h3>
-            <p class="project-desc">Built an AI-powered multilingual lecture transcription platform with React, FastAPI, Redis, PostgreSQL, and automated PDF generation.</p>
-            <a href="https://transcribe.contextcrafter.in/" class="project-link" target="_blank" rel="noopener">Open →</a>
-          </div>
+       
         </div>
 
+        <!-- Selected Project Display Pane (Right) -->
+        <div class="tower-project-pane" id="towerProjectPane">
+          <div class="tower-card-viewport">
+            <div class="tower-cards-list" id="towerCardsList">
 
-        <!-- Tooth Finder -->
-        <div class="bento-card dark project-card" data-aos="fade-up" data-aos-delay="60">
-          <div class="project-img proj-pattern proj-tooth">
-            <div class="proj-pattern-inner"></div>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">Computer Vision</span>
-            <h3 class="project-title">Tooth Finder</h3>
-            <p class="project-desc">Detects tooth type from X-Ray images using a deep learning classifier.</p>
-            <a href="https://huggingface.co/spaces/kaustubhg10/findtoothtypeVer1.0" class="project-link" target="_blank" rel="noopener">Open →</a>
-          </div>
-        </div>
+              <!-- Transcribe -->
+              <div class="bento-card project-card is-active" data-project-card="0" data-card-num="01">
+                <div class="project-img proj-pattern proj-pipe">
+                  <div class="proj-pattern-inner"></div>
+                </div>
+                <div class="project-body">
+                  <span class="project-tag">Gen-AI</span>
+                  <h3 class="project-title">Transcribe</h3>
+                  <p class="project-desc">Built an AI-powered multilingual lecture transcription platform with React, FastAPI, Redis, PostgreSQL, and automated PDF generation.</p>
+                  <a href="https://transcribe.contextcrafter.in/" class="project-link" target="_blank" rel="noopener">Open →</a>
+                </div>
+              </div>
 
+              <!-- Tooth Finder -->
+              <div class="bento-card dark project-card" data-project-card="1" data-card-num="02">
+                <div class="project-img proj-pattern proj-tooth">
+                  <div class="proj-pattern-inner"></div>
+                </div>
+                <div class="project-body">
+                  <span class="project-tag">Computer Vision</span>
+                  <h3 class="project-title">Tooth Finder</h3>
+                  <p class="project-desc">Detects tooth type from X-Ray images using a deep learning classifier.</p>
+                  <a href="https://huggingface.co/spaces/kaustubhg10/findtoothtypeVer1.0" class="project-link" target="_blank" rel="noopener">Open →</a>
+                </div>
+              </div>
 
-        <!-- Portal Valley -->
-        <div class="bento-card project-card" data-aos="fade-up" data-aos-delay="80">
-          <div class="project-img proj-pattern proj-game">
-            <div class="proj-pattern-inner"></div>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">Game Dev</span>
-            <h3 class="project-title">Portal Valley</h3>
-            <p class="project-desc">Top-down game built with vanilla JavaScript.</p>
-            <a href="https://ka-us-tubh.github.io/game3/" class="project-link" target="_blank" rel="noopener">Play now →</a>
-          </div>
-        </div>
+              <!-- Portal Valley -->
+              <div class="bento-card project-card" data-project-card="2" data-card-num="03">
+                <div class="project-img proj-pattern proj-game">
+                  <div class="proj-pattern-inner"></div>
+                </div>
+                <div class="project-body">
+                  <span class="project-tag">Game Dev</span>
+                  <h3 class="project-title">Portal Valley</h3>
+                  <p class="project-desc">Top-down game built with vanilla JavaScript.</p>
+                  <a href="https://ka-us-tubh.github.io/game3/" class="project-link" target="_blank" rel="noopener">Play now →</a>
+                </div>
+              </div>
 
-        <!-- TwinTower-RecSys -->
-        <div class="bento-card dark project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-img proj-pattern proj-rec">
-            <div class="proj-pattern-inner"></div>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">ML Systems</span>
-            <h3 class="project-title">TwinTower-RecSys</h3>
-            <p class="project-desc">Dual-encoder recommendation &amp; retrieval system.</p>
-            <a href="https://github.com/ka-us-tubh/two-tower-recommendation-retrieval-system.git" class="project-link" target="_blank" rel="noopener">GitHub →</a>
-          </div>
-        </div>
+              <!-- TwinTower-RecSys -->
+              <div class="bento-card dark project-card" data-project-card="3" data-card-num="04">
+                <div class="project-img proj-pattern proj-rec">
+                  <div class="proj-pattern-inner"></div>
+                </div>
+                <div class="project-body">
+                  <span class="project-tag">ML Systems</span>
+                  <h3 class="project-title">TwinTower-RecSys</h3>
+                  <p class="project-desc">Dual-encoder recommendation &amp; retrieval system.</p>
+                  <a href="https://github.com/ka-us-tubh/two-tower-recommendation-retrieval-system.git" class="project-link" target="_blank" rel="noopener">GitHub →</a>
+                </div>
+              </div>
 
-               <!-- Moon Lander -->
-        <div class="bento-card project-card" data-aos="fade-up" data-aos-delay="120">
-          <div class="project-img proj-pattern proj-rl">
-            <div class="proj-pattern-inner"></div>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">Reinforcement Learning</span>
-            <h3 class="project-title">Moon_Lander</h3>
-            <p class="project-desc">DQN-RL based lunar lander agent trained to land safely on the moon surface.</p>
-            <a href="https://github.com/ka-us-tubh/DQN_RL_luner_lander" class="project-link" target="_blank" rel="noopener">GitHub →</a>
-          </div>
-        </div>
+              <!-- Moon Lander -->
+              <div class="bento-card project-card" data-project-card="4" data-card-num="05">
+                <div class="project-img proj-pattern proj-rl">
+                  <div class="proj-pattern-inner"></div>
+                </div>
+                <div class="project-body">
+                  <span class="project-tag">Reinforcement Learning</span>
+                  <h3 class="project-title">Moon_Lander</h3>
+                  <p class="project-desc">DQN-RL based lunar lander agent trained to land safely on the moon surface.</p>
+                  <a href="https://github.com/ka-us-tubh/DQN_RL_luner_lander" class="project-link" target="_blank" rel="noopener">GitHub →</a>
+                </div>
+              </div>
 
-                <!-- Quantum Edge Detection -->
-        <div class="bento-card dark project-card" data-aos="fade-up" data-aos-delay="140">
-          <div class="project-img proj-pattern proj-qc">
-            <div class="proj-pattern-inner"></div>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">Quantum Computing</span>
-            <h3 class="project-title">Quantum Edge Detection</h3>
-            <p class="project-desc">QHED algorithm for image edge detection on a quantum computer.</p>
-            <a href="https://github.com/ka-us-tubh/Demonstration-of-quantum-hadamard-edge-detection" class="project-link" target="_blank" rel="noopener">GitHub →</a>
-          </div>
-        </div>
+              <!-- Quantum Edge Detection -->
+              <div class="bento-card dark project-card" data-project-card="5" data-card-num="06">
+                <div class="project-img proj-pattern proj-qc">
+                  <div class="proj-pattern-inner"></div>
+                </div>
+                <div class="project-body">
+                  <span class="project-tag">Quantum Computing</span>
+                  <h3 class="project-title">Quantum Edge Detection</h3>
+                  <p class="project-desc">QHED algorithm for image edge detection on a quantum computer.</p>
+                  <a href="https://github.com/ka-us-tubh/Demonstration-of-quantum-hadamard-edge-detection" class="project-link" target="_blank" rel="noopener">GitHub →</a>
+                </div>
+              </div>
 
+              <!-- Quantum Teleportation -->
+              <div class="bento-card project-card" data-project-card="6" data-card-num="07">
+                <div class="project-img proj-pattern proj-qt">
+                  <div class="proj-pattern-inner"></div>
+                </div>
+                <div class="project-body">
+                  <span class="project-tag">Quantum Computing</span>
+                  <h3 class="project-title">Quantum Teleportation</h3>
+                  <p class="project-desc">Teleporting quantum information between qubits using Bell states.</p>
+                  <a href="https://github.com/ka-us-tubh/quantum-computing-qiskit-/blob/master/teleportation%20(3).ipynb" class="project-link" target="_blank" rel="noopener">Notebook →</a>
+                </div>
+              </div>
 
+              <!-- Grover Algorithm -->
+              <div class="bento-card dark project-card" data-project-card="7" data-card-num="08">
+                <div class="project-img proj-pattern proj-grover">
+                  <div class="proj-pattern-inner"></div>
+                </div>
+                <div class="project-body">
+                  <span class="project-tag">Quantum Algorithms</span>
+                  <h3 class="project-title">Grover Algorithm</h3>
+                  <p class="project-desc">Grover's search algorithm for unstructured data using Qiskit.</p>
+                  <a href="https://github.com/ka-us-tubh/quantum-computing-qiskit-/blob/master/grover%20algo.ipynb" class="project-link" target="_blank" rel="noopener">Notebook →</a>
+                </div>
+              </div>
 
-        <!-- Quantum Teleportation -->
-        <div class="bento-card project-card" data-aos="fade-up" data-aos-delay="160">
-          <div class="project-img proj-pattern proj-qt">
-            <div class="proj-pattern-inner"></div>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">Quantum Computing</span>
-            <h3 class="project-title">Quantum Teleportation</h3>
-            <p class="project-desc">Teleporting quantum information between qubits using Bell states.</p>
-            <a href="https://github.com/ka-us-tubh/quantum-computing-qiskit-/blob/master/teleportation%20(3).ipynb" class="project-link" target="_blank" rel="noopener">Notebook →</a>
-          </div>
-        </div>
-
-        <!-- Grover Algorithm -->
-        <div class="bento-card dark project-card" data-aos="fade-up" data-aos-delay="180">
-          <div class="project-img proj-pattern proj-grover">
-            <div class="proj-pattern-inner"></div>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">Quantum Algorithms</span>
-            <h3 class="project-title">Grover Algorithm</h3>
-            <p class="project-desc">Grover's search algorithm for unstructured data using Qiskit.</p>
-            <a href="https://github.com/ka-us-tubh/quantum-computing-qiskit-/blob/master/grover%20algo.ipynb" class="project-link" target="_blank" rel="noopener">Notebook →</a>
+            </div>
           </div>
         </div>
 
