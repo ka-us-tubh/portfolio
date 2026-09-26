@@ -1529,7 +1529,7 @@ section { padding: 80px 0; }
 
 .tower-cards-list .project-card {
     display: flex !important;
-    width: 100%;
+    width: 85%;
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
@@ -1544,6 +1544,7 @@ section { padding: 80px 0; }
     filter: blur(1.5px);
     pointer-events: none;
     user-select: none;
+    box-shadow: 0 4px 12px -8px rgba(0, 0, 0, 0.08);
 }
 
 .tower-cards-list .project-card .project-img {
@@ -1559,8 +1560,8 @@ section { padding: 80px 0; }
     pointer-events: auto;
     user-select: auto;
     z-index: 10;
-    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.8),
-                0 0 32px rgba(255, 59, 10, 0.16),
+    box-shadow: 0 16px 36px -16px rgba(0, 0, 0, 0.85),
+                0 6px 14px -6px rgba(0, 0, 0, 0.5),
                 0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 
@@ -1568,9 +1569,10 @@ section { padding: 80px 0; }
     transform: scale(1) translateY(0);
 }
 
+/* Light theme active card: slim horizontal spread, soft downward elevation */
 [data-theme="light"] .tower-cards-list .project-card.is-active {
-    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.16),
-                0 0 32px rgba(255, 59, 10, 0.1);
+    box-shadow: 0 14px 22px -12px rgba(0, 0, 0, 0.11),
+                0 4px 8px -3px rgba(0, 0, 0, 0.05);
 }
 
 /* Previous card (peeking on top) */
@@ -1581,14 +1583,14 @@ section { padding: 80px 0; }
     pointer-events: auto;
     cursor: pointer;
     z-index: 5;
-    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.5);
 }
 
 .tower-cards-list .project-card.is-prev:hover {
     opacity: 0.85;
     transform: scale(0.96) translateY(2px);
     filter: none;
-    box-shadow: 0 16px 32px -6px rgba(56, 189, 248, 0.25);
+    box-shadow: 0 12px 24px -10px rgba(56, 189, 248, 0.25);
 }
 
 /* Next card (peeking on bottom) */
@@ -1599,14 +1601,25 @@ section { padding: 80px 0; }
     pointer-events: auto;
     cursor: pointer;
     z-index: 5;
-    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.5);
 }
 
 .tower-cards-list .project-card.is-next:hover {
     opacity: 0.85;
     transform: scale(0.96) translateY(-2px);
     filter: none;
-    box-shadow: 0 16px 32px -6px rgba(56, 189, 248, 0.25);
+    box-shadow: 0 12px 24px -10px rgba(56, 189, 248, 0.25);
+}
+
+/* Light theme peeking cards: slim subtle shadows */
+[data-theme="light"] .tower-cards-list .project-card.is-prev,
+[data-theme="light"] .tower-cards-list .project-card.is-next {
+    box-shadow: 0 8px 16px -10px rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="light"] .tower-cards-list .project-card.is-prev:hover,
+[data-theme="light"] .tower-cards-list .project-card.is-next:hover {
+    box-shadow: 0 10px 20px -10px rgba(2, 132, 199, 0.12);
 }
 
 .project-card[data-card-num]::after {
