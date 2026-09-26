@@ -1205,17 +1205,20 @@ section { padding: 80px 0; }
     border-radius: 12px;
 }
 
-/* ── FLOORS (BLACK PLAIN CARDS) ──────────── */
-.scd-floor {
+/* ── FLOORS (GRAYISH CARDS IN DARK THEME) ── */
+.scd-floor,
+[data-theme="dark"] .scd-floor {
     position: absolute;
     left: 0;
     top: 0;
     width: 180px;
     height: 180px;
     border-radius: 14px;
-    /* Black plain cards with smooth obsidian finish */
-    background: linear-gradient(145deg, #1c1f28 0%, #111318 60%, #0a0b0e 100%);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    /* Grayish cards with refined slate finish and subtle dot grid for clear visibility */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px),
+                linear-gradient(145deg, #484e5b 0%, #383d47 60%, #2c3039 100%);
+    background-size: 16px 16px, 100% 100%;
+    border: 1px solid rgba(255, 255, 255, 0.24);
     transform: translateZ(calc(var(--i) * 30px));
     box-shadow: 0 10px 24px -5px rgba(0, 0, 0, 0.7),
                 0 3px 8px -2px rgba(0, 0, 0, 0.45);
@@ -1244,7 +1247,7 @@ section { padding: 80px 0; }
     position: absolute;
     inset: 8px;
     border-radius: 8px;
-    border: 1px dashed rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(255, 255, 255, 0.14);
     pointer-events: none;
 }
 
@@ -1257,7 +1260,7 @@ section { padding: 80px 0; }
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.32);
+    color: rgba(255, 255, 255, 0.65);
     pointer-events: none;
     transition: color 0.3s ease;
 }
@@ -1269,38 +1272,46 @@ section { padding: 80px 0; }
 }
 
 /* Floor hover state */
-.scd-floor:hover {
+.scd-floor:hover,
+[data-theme="dark"] .scd-floor:hover {
     border-color: #38bdf8;
     box-shadow: 0 14px 28px -6px rgba(56, 189, 248, 0.4), 0 0 20px rgba(56, 189, 248, 0.25);
-    background: linear-gradient(145deg, #252b38 0%, #151821 100%);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 1.2px, transparent 1.2px),
+                linear-gradient(145deg, #374659 0%, #2b3746 60%, #222b37 100%);
+    background-size: 16px 16px, 100% 100%;
     z-index: 60;
 }
 
-.scd-floor:hover .floor-num {
+.scd-floor:hover .floor-num,
+[data-theme="dark"] .scd-floor:hover .floor-num {
     color: #38bdf8;
 }
 
 /* Active floor (selected) */
-.scd-floor.is-active {
+.scd-floor.is-active,
+[data-theme="dark"] .scd-floor.is-active {
     border-color: var(--brand) !important;
     box-shadow: 0 14px 28px -6px var(--brand-glow), 0 0 24px var(--brand-glow) !important;
-    background: linear-gradient(145deg, #2a2a20 0%, #171811 100%) !important;
+    background: radial-gradient(circle, rgba(255, 59, 10, 0.14) 1.2px, transparent 1.2px),
+                linear-gradient(145deg, #4d3d36 0%, #3e2f29 60%, #31241f 100%) !important;
+    background-size: 16px 16px, 100% 100%;
     z-index: 60;
 }
 
-.scd-floor.is-active .floor-num {
+.scd-floor.is-active .floor-num,
+[data-theme="dark"] .scd-floor.is-active .floor-num {
     color: var(--brand);
 }
 
 /* ── LIGHT THEME TOWER CARD OVERRIDES ────── */
 [data-theme="light"] .scd-floor {
-    background: linear-gradient(145deg, #ffffff 0%, #f6f5f0 60%, #ece9e2 100%);
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.06) 1.2px, transparent 1.2px),
+                linear-gradient(145deg, #ffffff 0%, #f6f5f0 60%, #ece9e2 100%);
+    background-size: 16px 16px, 100% 100%;
     border-color: rgba(0, 0, 0, 0.18);
     box-shadow: 0 10px 22px -6px rgba(0, 0, 0, 0.12),
                 0 3px 8px -2px rgba(0, 0, 0, 0.05);
 }
-
-
 
 [data-theme="light"] .scd-floor::after {
     border-color: rgba(0, 0, 0, 0.08);
@@ -1313,7 +1324,9 @@ section { padding: 80px 0; }
 [data-theme="light"] .scd-floor:hover {
     border-color: #0284c7;
     box-shadow: 0 14px 28px -6px rgba(2, 132, 199, 0.3), 0 0 20px rgba(2, 132, 199, 0.15);
-    background: linear-gradient(145deg, #ffffff 0%, #edf7ff 100%);
+    background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 1.2px, transparent 1.2px),
+                linear-gradient(145deg, #ffffff 0%, #edf7ff 100%);
+    background-size: 16px 16px, 100% 100%;
 }
 
 [data-theme="light"] .scd-floor:hover .floor-num {
@@ -1323,7 +1336,9 @@ section { padding: 80px 0; }
 [data-theme="light"] .scd-floor.is-active {
     border-color: var(--brand) !important;
     box-shadow: 0 14px 28px -6px rgba(255, 59, 10, 0.3), 0 0 24px rgba(255, 59, 10, 0.2) !important;
-    background: linear-gradient(145deg, #fffcfb 0%, #fff2ee 100%) !important;
+    background: radial-gradient(circle, rgba(255, 59, 10, 0.08) 1.2px, transparent 1.2px),
+                linear-gradient(145deg, #fffcfb 0%, #fff2ee 100%) !important;
+    background-size: 16px 16px, 100% 100%;
 }
 
 [data-theme="light"] .scd-floor.is-active .floor-num {
