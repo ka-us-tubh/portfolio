@@ -1570,8 +1570,7 @@ section { padding: 80px 0; }
 
 [data-theme="light"] .tower-cards-list .project-card.is-active {
     box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.16),
-                0 0 32px rgba(255, 59, 10, 0.1),
-                0 0 0 1px rgba(0, 0, 0, 0.08);
+                0 0 32px rgba(255, 59, 10, 0.1);
 }
 
 /* Previous card (peeking on top) */
@@ -1689,7 +1688,8 @@ section { padding: 80px 0; }
     overflow: hidden;
     position: relative;
     background: #fff;
-    border-color: var(--border);
+    border: none;
+    border-color: transparent;
     color: var(--text-primary);
     border-radius: 12px;
     box-shadow: var(--shadow-md);
@@ -1698,6 +1698,15 @@ section { padding: 80px 0; }
 .bento-card.project-card,
 .bento-card.project-card.dark {
     background: #fff;
+    border: none;
+    border-color: transparent;
+}
+
+[data-theme="light"] .project-card,
+[data-theme="light"] .bento-card.project-card,
+[data-theme="light"] .bento-card.project-card.dark {
+    border: none !important;
+    border-color: transparent !important;
 }
 
 .project-card::before,
@@ -1922,6 +1931,7 @@ section { padding: 80px 0; }
 [data-theme="dark"] .bento-card.project-card,
 [data-theme="dark"] .bento-card.project-card.dark {
     background: #0b0b0b;
+    border: 1px solid rgba(255,255,255,0.24);
     border-color: rgba(255,255,255,0.24);
     color: #fff;
     box-shadow: 0 12px 28px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08);
