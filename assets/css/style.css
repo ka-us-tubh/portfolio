@@ -491,58 +491,17 @@ section { padding: 80px 0; }
 
 .home-photo {
     grid-column: 3;
-    grid-row: 1 / 4;          /* spans rows 1-3 — beside hero, status, social */
+    grid-row: 1 / 3;          /* spans rows 1-2 beside hero and ticker */
     overflow: visible !important;
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 32px 24px 24px;
+    padding: 10px 16px 20px;
     background: transparent;
     border: 0;
     box-shadow: none;
 }
-
-.home-status {
-    grid-column: 1 / 3;        /* same width as hero */
-    grid-row: 2;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* White dot-grid pattern on the right side of status card */
-.home-status::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 55%;
-    height: 100%;
-    background-image:
-        radial-gradient(circle, rgba(255,255,255,0.18) 1.5px, transparent 1.5px);
-    background-size: 18px 18px;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Large faint circle accent — top right */
-.home-status::after {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    border: 28px solid rgba(255,255,255,0.07);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* keep content above pseudo-elements */
-.home-status .social-title,
-.home-status .social-links { position: relative; z-index: 1; }
 
 .home-barcode {
     position: absolute;
@@ -592,7 +551,7 @@ section { padding: 80px 0; }
 
 .home-location {
     grid-column: 1 / 3;        /* same width as hero */
-    grid-row: 3;
+    grid-row: 2;
     padding: 22px 24px;
     position: relative;
     overflow: hidden;
@@ -714,39 +673,7 @@ section { padding: 80px 0; }
 .home-location .location-value,
 .home-location .location-detail { position: relative; z-index: 1; }
 
-/* bigger social links inside the tall status card */
-.home-status .social-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #FFF;
-}
 
-.home-status .social-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.home-status .social-link {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--radius-sm);
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4.0rem;
-    color: #FFF;
-    transition: all var(--transition);
-    flex-shrink: 0;
-}
-
-.home-status .social-link:hover {
-    background: transparent;
-    transform: translateY(-3px);
-}
 
 .home-social {
     grid-column: 1 / 3;
@@ -845,7 +772,7 @@ section { padding: 80px 0; }
 */
 .id-lanyard-strap {
     width: 56px;
-    height: clamp(210px, 30vh, 320px);
+    height: clamp(90px, 12vh, 130px);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -2855,14 +2782,111 @@ section { padding: 80px 0; }
    FOOTER
    ============================================= */
 footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 0;
+    width: 100%;
+    margin-top: 60px;
+    padding: 0 0 0;
 }
 
-.footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
+.footer-social-card {
+    width: 100%;
+    padding: 38px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    gap: 32px;
+}
+
+/* White dot-grid pattern on the right side of footer social card */
+.footer-social-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.18) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Large faint circle accent — top right */
+.footer-social-card::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 32px solid rgba(255, 255, 255, 0.07);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.footer-social-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-social-card .social-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #FFF;
+}
+
+.footer-social-card .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
+}
+
+.footer-social-card .social-link {
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.4rem;
+    color: #FFF;
+    transition: all var(--transition);
+    flex-shrink: 0;
+}
+
+.footer-social-card .social-link:hover {
+    background: transparent;
+    transform: translateY(-4px) scale(1.08);
+}
+
+.footer-barcode-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 210px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+}
+
+.footer-bottom {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2870,16 +2894,37 @@ footer {
     gap: 16px;
 }
 
-.footer-copy { font-size: 0.85rem; color: var(--text-muted); }
-.footer-copy a { color: var(--brand); font-weight: 600; }
+.footer-copy {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
 
-.footer-links { display: flex; gap: 20px; }
+.footer-copy a {
+    color: var(--brand);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.footer-copy a:hover {
+    text-decoration: underline;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
 .footer-links a {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition);
 }
-.footer-links a:hover { color: var(--brand); }
+
+.footer-links a:hover {
+    color: var(--brand);
+}
 
 /* =============================================
    MOBILE TOPBAR (hidden on desktop, visible ≤768px)
@@ -3095,11 +3140,8 @@ footer {
 
     .setup { max-height: min(280px, 42vh); }
 
-    .home-photo    { grid-column: 3;     grid-row: 1 / 4; }
-    .home-status   { grid-column: 1 / 3; grid-row: 2; }
-    .home-location { grid-column: 1 / 3; grid-row: 3; }
-    .home-crt      { grid-column: 1 / 3; grid-row: 4; grid-template-columns: 200px 1fr; }
-    .home-cta      { grid-column: 3;     grid-row: 4; }
+    .home-photo    { grid-column: 3;     grid-row: 1 / 3; }
+    .home-location { grid-column: 1 / 3; grid-row: 2; }
 
     .projects-bento { grid-template-columns: repeat(3, 1fr); }
     .project-card { grid-column: span 1; }
@@ -3163,13 +3205,31 @@ footer {
 
     /* Reset to single column flow */
     .home-bento     { grid-template-columns: 1fr; }
-    .home-photo     { grid-column: 1; grid-row: auto; min-height: 340px; }
-    .id-lanyard-strap { height: clamp(170px, 24vh, 230px); }
-    .home-status    { grid-column: 1; grid-row: auto; }
+    .home-photo     { grid-column: 1; grid-row: auto; min-height: 320px; padding: 12px 10px; }
+    .id-lanyard-strap { height: clamp(70px, 10vh, 100px); }
     .home-location  { grid-column: 1; grid-row: auto; }
-    .home-crt       { grid-column: 1; grid-row: auto; grid-template-columns: 1fr; }
-    .home-cta       { grid-column: 1; grid-row: auto; }
-    .home-crt-intro { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Footer responsive */
+    .footer-social-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 24px;
+        gap: 28px;
+    }
+    .footer-social-card .social-link {
+        width: 48px;
+        height: 48px;
+        font-size: 2.8rem;
+    }
+    .footer-barcode-wrap {
+        align-self: flex-start;
+        width: 190px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
 
     .projects-bento { grid-template-columns: repeat(2, 1fr); }
     .project-card, .project-card.wide, .project-card.small { grid-column: span 1; }
