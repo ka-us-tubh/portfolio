@@ -66,6 +66,8 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) var(--bg);
 }
 
 body {
@@ -75,7 +77,6 @@ body {
     line-height: 1.6;
     transition: background-color var(--transition), color var(--transition);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -97,6 +98,7 @@ p { color: var(--text-secondary); line-height: 1.7; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
 
 /* =============================================
    SIDEBAR — floating bento card
