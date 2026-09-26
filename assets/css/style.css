@@ -1198,36 +1198,52 @@ section { padding: 80px 0; }
     transform: translateZ(calc(var(--i) * 50px + 6px));
 }
 
-/* Floor hover state */
+/* Floor hover and preview state */
 .scd-floor:hover,
-[data-theme="dark"] .scd-floor:hover {
-    border-color: #38bdf8;
-    box-shadow: 0 14px 28px -6px rgba(56, 189, 248, 0.4), 0 0 20px rgba(56, 189, 248, 0.25);
+.scd-floor.is-preview,
+[data-theme="dark"] .scd-floor:hover,
+[data-theme="dark"] .scd-floor.is-preview {
+    border-color: #38bdf8 !important;
+    box-shadow: 0 14px 28px -6px rgba(56, 189, 248, 0.45), 0 0 20px rgba(56, 189, 248, 0.25) !important;
     background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 1.2px, transparent 1.2px),
-                linear-gradient(145deg, #374659 0%, #2b3746 60%, #222b37 100%);
-    background-size: 16px 16px, 100% 100%;
+                linear-gradient(145deg, #374659 0%, #2b3746 60%, #222b37 100%) !important;
+    background-size: 16px 16px, 100% 100% !important;
     z-index: 60;
 }
 
 .scd-floor:hover .floor-num,
-[data-theme="dark"] .scd-floor:hover .floor-num {
-    color: #38bdf8;
+.scd-floor.is-preview .floor-num,
+[data-theme="dark"] .scd-floor:hover .floor-num,
+[data-theme="dark"] .scd-floor.is-preview .floor-num {
+    color: #38bdf8 !important;
 }
 
-/* Active floor (selected) */
-.scd-floor.is-active,
-[data-theme="dark"] .scd-floor.is-active {
+/* Floor selected state (when another floor is previewed) */
+.scd-floor.is-selected:not(.is-preview),
+[data-theme="dark"] .scd-floor.is-selected:not(.is-preview) {
+    border-color: rgba(255, 59, 10, 0.75);
+    box-shadow: 0 10px 22px -6px var(--brand-glow), 0 0 16px rgba(255, 59, 10, 0.2);
+}
+
+.scd-floor.is-selected:not(.is-preview) .floor-num,
+[data-theme="dark"] .scd-floor.is-selected:not(.is-preview) .floor-num {
+    color: var(--brand);
+}
+
+/* Active floor (selected & committed) */
+.scd-floor.is-active:not(.is-preview),
+[data-theme="dark"] .scd-floor.is-active:not(.is-preview) {
     border-color: var(--brand) !important;
     box-shadow: 0 14px 28px -6px var(--brand-glow), 0 0 24px var(--brand-glow) !important;
     background: radial-gradient(circle, rgba(255, 59, 10, 0.14) 1.2px, transparent 1.2px),
                 linear-gradient(145deg, #4d3d36 0%, #3e2f29 60%, #31241f 100%) !important;
-    background-size: 16px 16px, 100% 100%;
+    background-size: 16px 16px, 100% 100% !important;
     z-index: 60;
 }
 
-.scd-floor.is-active .floor-num,
-[data-theme="dark"] .scd-floor.is-active .floor-num {
-    color: var(--brand);
+.scd-floor.is-active:not(.is-preview) .floor-num,
+[data-theme="dark"] .scd-floor.is-active:not(.is-preview) .floor-num {
+    color: var(--brand) !important;
 }
 
 /* ── LIGHT THEME TOWER CARD OVERRIDES ────── */
@@ -1248,28 +1264,30 @@ section { padding: 80px 0; }
     color: rgba(0, 0, 0, 0.45);
 }
 
-[data-theme="light"] .scd-floor:hover {
-    border-color: #0284c7;
-    box-shadow: 0 14px 28px -6px rgba(2, 132, 199, 0.3), 0 0 20px rgba(2, 132, 199, 0.15);
+[data-theme="light"] .scd-floor:hover,
+[data-theme="light"] .scd-floor.is-preview {
+    border-color: #0284c7 !important;
+    box-shadow: 0 14px 28px -6px rgba(2, 132, 199, 0.3), 0 0 20px rgba(2, 132, 199, 0.15) !important;
     background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 1.2px, transparent 1.2px),
-                linear-gradient(145deg, #ffffff 0%, #edf7ff 100%);
-    background-size: 16px 16px, 100% 100%;
+                linear-gradient(145deg, #ffffff 0%, #edf7ff 100%) !important;
+    background-size: 16px 16px, 100% 100% !important;
 }
 
-[data-theme="light"] .scd-floor:hover .floor-num {
-    color: #0284c7;
+[data-theme="light"] .scd-floor:hover .floor-num,
+[data-theme="light"] .scd-floor.is-preview .floor-num {
+    color: #0284c7 !important;
 }
 
-[data-theme="light"] .scd-floor.is-active {
+[data-theme="light"] .scd-floor.is-active:not(.is-preview) {
     border-color: var(--brand) !important;
     box-shadow: 0 14px 28px -6px rgba(255, 59, 10, 0.3), 0 0 24px rgba(255, 59, 10, 0.2) !important;
     background: radial-gradient(circle, rgba(255, 59, 10, 0.08) 1.2px, transparent 1.2px),
                 linear-gradient(145deg, #fffcfb 0%, #fff2ee 100%) !important;
-    background-size: 16px 16px, 100% 100%;
+    background-size: 16px 16px, 100% 100% !important;
 }
 
-[data-theme="light"] .scd-floor.is-active .floor-num {
-    color: var(--brand);
+[data-theme="light"] .scd-floor.is-active:not(.is-preview) .floor-num {
+    color: var(--brand) !important;
 }
 
 /* ── LEADER LINES & BILLBOARDED LABELS ────── */
@@ -1379,60 +1397,65 @@ section { padding: 80px 0; }
     background: rgba(0, 0, 0, 0.06);
 }
 
-/* Callout hover (triggered only when hovering the card) */
-.scd-floor:hover .callout-line {
-    background: #38bdf8;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+/* Callout hover & preview */
+.scd-floor:hover .callout-line,
+.scd-floor.is-preview .callout-line {
+    background: #38bdf8 !important;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.7) !important;
 }
 
-.scd-floor:hover .callout-line::before {
-    background: #38bdf8;
-    box-shadow: 0 0 10px #38bdf8;
+.scd-floor:hover .callout-line::before,
+.scd-floor.is-preview .callout-line::before {
+    background: #38bdf8 !important;
+    box-shadow: 0 0 10px #38bdf8 !important;
 }
 
-.scd-floor:hover .callout-label {
-    background: rgba(23, 31, 48, 0.96);
-    border-color: #38bdf8;
-    color: #fff;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+.scd-floor:hover .callout-label,
+.scd-floor.is-preview .callout-label {
+    background: rgba(23, 31, 48, 0.96) !important;
+    border-color: #38bdf8 !important;
+    color: #fff !important;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.35) !important;
 }
 
-[data-theme="light"] .scd-floor:hover .callout-label {
-    background: #fff;
-    border-color: #0284c7;
-    color: #0f172a;
+[data-theme="light"] .scd-floor:hover .callout-label,
+[data-theme="light"] .scd-floor.is-preview .callout-label {
+    background: #fff !important;
+    border-color: #0284c7 !important;
+    color: #0f172a !important;
 }
 
-.scd-floor:hover .callout-num {
-    color: #38bdf8;
+.scd-floor:hover .callout-num,
+.scd-floor.is-preview .callout-num {
+    color: #38bdf8 !important;
 }
 
-/* Callout active */
-.scd-floor.is-active .callout-line {
+/* Callout active (when not previewing another floor) */
+.scd-floor.is-active:not(.is-preview) .callout-line {
     background: var(--brand) !important;
     box-shadow: 0 0 10px var(--brand-glow) !important;
 }
 
-.scd-floor.is-active .callout-line::before {
+.scd-floor.is-active:not(.is-preview) .callout-line::before {
     background: var(--brand) !important;
     box-shadow: 0 0 12px var(--brand) !important;
 }
 
-.scd-floor.is-active .callout-label {
-    background: rgba(35, 33, 20, 0.96);
-    border-color: var(--brand);
-    color: #fff;
-    box-shadow: 0 0 20px var(--brand-glow);
+.scd-floor.is-active:not(.is-preview) .callout-label {
+    background: rgba(35, 33, 20, 0.96) !important;
+    border-color: var(--brand) !important;
+    color: #fff !important;
+    box-shadow: 0 0 20px var(--brand-glow) !important;
 }
 
-[data-theme="light"] .scd-floor.is-active .callout-label {
-    background: #fff;
-    border-color: #d97706;
-    color: #111;
+[data-theme="light"] .scd-floor.is-active:not(.is-preview) .callout-label {
+    background: #fff !important;
+    border-color: #d97706 !important;
+    color: #111 !important;
 }
 
-.scd-floor.is-active .callout-num {
-    color: var(--brand);
+.scd-floor.is-active:not(.is-preview) .callout-num {
+    color: var(--brand) !important;
 }
 
 /* ── HINT BAR ────────────────────────────── */
@@ -1450,7 +1473,7 @@ section { padding: 80px 0; }
 
 /* ── RIGHT SIDE: SELECTED PROJECT DISPLAY ── */
 .tower-project-pane {
-    width: 420px;
+    width: 440px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -1459,36 +1482,132 @@ section { padding: 80px 0; }
     opacity: 1;
     visibility: visible;
     transform: none;
+    position: relative;
+    z-index: 10;
 }
 
 .tower-card-viewport {
-    width: 420px;
+    width: 440px;
     max-width: 100%;
+    height: 520px;
     position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    /* Soft vertical mask: peeked cards fade gracefully at viewport edges */
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.4) 3%,
+        black 14%,
+        black 86%,
+        rgba(0, 0, 0, 0.4) 97%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.4) 3%,
+        black 14%,
+        black 86%,
+        rgba(0, 0, 0, 0.4) 97%,
+        transparent 100%
+    );
+}
+
+.tower-cards-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    pointer-events: none;
 }
 
 .tower-cards-list .project-card {
-    display: none;
-    width: 420px;
+    display: flex !important;
+    width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    box-shadow: var(--shadow-lg, 0 16px 36px rgba(0,0,0,0.25));
+    box-sizing: border-box;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.55s ease,
+                box-shadow 0.55s ease;
+    will-change: transform, opacity;
+    transform-origin: center center;
+    opacity: 0.08;
+    transform: scale(0.86);
+    filter: blur(1.5px);
+    pointer-events: none;
+    user-select: none;
 }
 
+.tower-cards-list .project-card .project-img {
+    aspect-ratio: 16 / 10;
+    max-height: 240px;
+}
+
+/* Active card: full focus, centered, interactive */
 .tower-cards-list .project-card.is-active {
-    display: flex;
-    animation: projectCardAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: none;
+    pointer-events: auto;
+    user-select: auto;
+    z-index: 10;
+    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.8),
+                0 0 32px rgba(255, 59, 10, 0.16),
+                0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 
-@keyframes projectCardAppear {
-    from {
-        opacity: 0;
-        transform: translateY(14px) scale(0.97);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+.tower-cards-list .project-card.is-active:hover {
+    transform: scale(1) translateY(0);
+}
+
+[data-theme="light"] .tower-cards-list .project-card.is-active {
+    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.16),
+                0 0 32px rgba(255, 59, 10, 0.1),
+                0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* Previous card (peeking on top) */
+.tower-cards-list .project-card.is-prev {
+    opacity: 0.52;
+    transform: scale(0.93) translateY(4px);
+    filter: blur(0.4px);
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.5);
+}
+
+.tower-cards-list .project-card.is-prev:hover {
+    opacity: 0.85;
+    transform: scale(0.96) translateY(2px);
+    filter: none;
+    box-shadow: 0 16px 32px -6px rgba(56, 189, 248, 0.25);
+}
+
+/* Next card (peeking on bottom) */
+.tower-cards-list .project-card.is-next {
+    opacity: 0.52;
+    transform: scale(0.93) translateY(-4px);
+    filter: blur(0.4px);
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.5);
+}
+
+.tower-cards-list .project-card.is-next:hover {
+    opacity: 0.85;
+    transform: scale(0.96) translateY(-2px);
+    filter: none;
+    box-shadow: 0 16px 32px -6px rgba(56, 189, 248, 0.25);
 }
 
 .project-card[data-card-num]::after {
@@ -1514,8 +1633,14 @@ section { padding: 80px 0; }
 
     .tower-project-pane {
         width: 100%;
-        max-width: 100%;
+        max-width: 440px;
         align-items: center;
+    }
+
+    .tower-card-viewport {
+        width: 100%;
+        max-width: 440px;
+        height: 500px;
     }
 }
 
@@ -1528,6 +1653,17 @@ section { padding: 80px 0; }
     .tower-wrapper {
         transform: scale(0.68);
         margin-bottom: -35px;
+    }
+
+    .tower-card-viewport {
+        width: 100%;
+        max-width: calc(100vw - 32px);
+        height: 470px;
+    }
+
+    .tower-cards-list .project-card .project-img {
+        aspect-ratio: 16 / 10;
+        max-height: 200px;
     }
 
     .callout-line {

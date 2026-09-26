@@ -340,7 +340,7 @@
             <div class="scd-tower" id="isometricTower" tabindex="0" role="region" aria-label="Isometric tower of project cards">
               
               <!-- Floor 01: Transcribe -->
-              <div class="scd-floor is-active" style="--i:7" data-project-index="0" role="button" tabindex="0" aria-label="View project: Transcribe" aria-selected="true">
+              <div class="scd-floor is-active is-selected" style="--i:7" data-project-index="0" role="button" tabindex="0" aria-label="View project: Transcribe" aria-selected="true">
                 <span class="floor-num">01</span>
                 <div class="floor-callout">
                   <div class="callout-line"></div>
@@ -445,12 +445,14 @@
 
             </div>
           </div>
-       
+          <div class="tower-hint-bar">
+            <span>✦</span> Hover or scroll tower to explore · Click to select
+          </div>
         </div>
 
         <!-- Selected Project Display Pane (Right) -->
         <div class="tower-project-pane" id="towerProjectPane">
-          <div class="tower-card-viewport">
+          <div class="tower-card-viewport" id="towerCardViewport">
             <div class="tower-cards-list" id="towerCardsList">
 
               <!-- Transcribe -->
@@ -467,7 +469,7 @@
               </div>
 
               <!-- Tooth Finder -->
-              <div class="bento-card dark project-card" data-project-card="1" data-card-num="02">
+              <div class="bento-card dark project-card is-next" data-project-card="1" data-card-num="02">
                 <div class="project-img proj-pattern proj-tooth">
                   <div class="proj-pattern-inner"></div>
                 </div>

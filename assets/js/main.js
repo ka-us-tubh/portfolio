@@ -259,46 +259,273 @@ document.querySelectorAll('.desktop-icon').forEach((icon) => {
   });
 });
 
-// ── Projects: Isometric Tower Controller ──────
-const towerFloors = document.querySelectorAll('.scd-floor');
-const towerCards  = document.querySelectorAll('.tower-cards-list .project-card');
+// ── Projects: Isometric Tower & Vertical Stack Controller ──────
+(function initIsometricTower() {
+  const tower = document.getElementById('isometricTower');
+  const towerWrapper = document.querySelector('.tower-wrapper');
+  const towerStage = document.getElementById('projectsTowerStage');
+  const towerFloors = Array.from(document.querySelectorAll('.scd-floor'));
+  const towerPane = document.getElementById('towerProjectPane');
+  const towerCardViewport = document.getElementById('towerCardViewport') || document.querySelector('.tower-card-viewport');
+  const towerCardsList = document.getElementById('towerCardsList');
+  const towerCards = Array.from(document.querySelectorAll('.tower-cards-list .project-card'));
 
-function selectProjectFloor(index) {
-  // Toggle active floor
-  towerFloors.forEach((floor) => {
-    const isTarget = floor.dataset.projectIndex === String(index);
-    floor.classList.toggle('is-active', isTarget);
-    floor.setAttribute('aria-selected', isTarget ? 'true' : 'false');
-  });
+  if (!towerFloors.length || !towerCards.length || !towerCardsList || !towerCardViewport) {
+    return;
+  }
 
-  // Activate matching project card
-  towerCards.forEach((card) => {
-    const isTarget = card.dataset.projectCard === String(index);
-    card.classList.toggle('is-active', isTarget);
-  });
-}
+  // Find initial active index from HTML or default to 0
+  let selectedIndex = 0;
+  const initialFloorIdx = towerFloors.findIndex((f) => f.classList.contains('is-active'));
+  if (initialFloorIdx !== -1) {
+    selectedIndex = initialFloorIdx;
+  }
 
-// Attach floor click and keyboard listeners (only cards are clickable)
-towerFloors.forEach((floor) => {
-  floor.addEventListener('click', (e) => {
-    // Labels are non-clickable readouts; only the card body is clickable
-    if (e.target.closest('.floor-callout')) {
-      return;
+  let previewIndex = null;
+  let revertTimeout = null;
+  let isScrolling = false;
+  let scrollCooldownTimer = null;
+
+  // Cached positions to prevent layout thrashing during fast hover
+  let cardMetrics = [];
+
+  function measureCards() {
+    cardMetrics = towerCards.map((card) => ({
+      top: card.offsetTop,
+      height: card.offsetHeight
+    }));
+  }
+
+  function updateDisplay(targetIdx) {
+    if (targetIdx < 0 || targetIdx >= towerCards.length) return;
+
+    if (!cardMetrics.length || cardMetrics[0].height === 0) {
+      measureCards();
     }
-    const idx = floor.dataset.projectIndex;
-    if (idx !== undefined) {
-      selectProjectFloor(idx);
-    }
-  });
 
-  floor.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      const idx = floor.dataset.projectIndex;
-      if (idx !== undefined) {
-        selectProjectFloor(idx);
+    const viewportHeight = towerCardViewport.clientHeight || 520;
+    const metric = cardMetrics[targetIdx] || {
+      top: towerCards[targetIdx].offsetTop,
+      height: towerCards[targetIdx].offsetHeight
+    };
+
+    // Calculate center offset
+    const cardCenter = metric.top + metric.height / 2;
+    const viewportCenter = viewportHeight / 2;
+    const translateY = Math.round(viewportCenter - cardCenter);
+
+    towerCardsList.style.transform = `translateY(${translateY}px)`;
+
+    // Update classes on cards
+    towerCards.forEach((card, i) => {
+      card.classList.remove('is-active', 'is-prev', 'is-next');
+      if (i === targetIdx) {
+        card.classList.add('is-active');
+        card.setAttribute('aria-hidden', 'false');
+      } else if (i === targetIdx - 1) {
+        card.classList.add('is-prev');
+        card.setAttribute('aria-hidden', 'true');
+      } else if (i === targetIdx + 1) {
+        card.classList.add('is-next');
+        card.setAttribute('aria-hidden', 'true');
+      } else {
+        card.setAttribute('aria-hidden', 'true');
       }
-    }
+    });
+
+    // Update floor states
+    towerFloors.forEach((floor, i) => {
+      const isSelected = (i === selectedIndex);
+      const isCurrentTarget = (i === targetIdx);
+      const isPreview = (previewIndex !== null && i === previewIndex);
+
+      floor.classList.toggle('is-selected', isSelected);
+      floor.classList.toggle('is-preview', isPreview);
+      floor.classList.toggle('is-active', isCurrentTarget);
+      floor.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+    });
+  }
+
+  function commitSelect(index) {
+    selectedIndex = index;
+    previewIndex = null;
+    clearTimeout(revertTimeout);
+    updateDisplay(index);
+  }
+
+  function previewFloor(index) {
+    clearTimeout(revertTimeout);
+    previewIndex = index;
+    updateDisplay(index);
+  }
+
+  function scheduleRevert() {
+    clearTimeout(revertTimeout);
+    revertTimeout = setTimeout(() => {
+      previewIndex = null;
+      updateDisplay(selectedIndex);
+    }, 180);
+  }
+
+  function cancelRevert() {
+    clearTimeout(revertTimeout);
+  }
+
+  // 1. Hover & Click on floors
+  towerFloors.forEach((floor) => {
+    const idx = parseInt(floor.dataset.projectIndex, 10);
+    if (isNaN(idx)) return;
+
+    floor.addEventListener('mouseenter', () => {
+      previewFloor(idx);
+    });
+
+    floor.addEventListener('click', () => {
+      commitSelect(idx);
+    });
+
+    floor.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        commitSelect(idx);
+      }
+    });
   });
-});
+
+  // When mouse leaves the tower container, revert to the clicked/selected card
+  if (towerWrapper) {
+    towerWrapper.addEventListener('mouseleave', () => {
+      scheduleRevert();
+    });
+    towerWrapper.addEventListener('mouseenter', () => {
+      cancelRevert();
+    });
+  }
+
+  // If user moves mouse over to project pane, keep the previewed card active
+  if (towerPane) {
+    towerPane.addEventListener('mouseenter', () => {
+      cancelRevert();
+    });
+    towerPane.addEventListener('mouseleave', () => {
+      scheduleRevert();
+    });
+  }
+
+  // If user leaves the whole section stage
+  if (towerStage) {
+    towerStage.addEventListener('mouseleave', () => {
+      scheduleRevert();
+    });
+  }
+
+  // 2. Click on peeking cards to select them
+  towerCards.forEach((card, idx) => {
+    card.addEventListener('click', (e) => {
+      // If user clicked a link inside the active card, allow navigation
+      if (e.target.closest('a')) {
+        return;
+      }
+      // If it's a peeking previous or next card, select it!
+      if (card.classList.contains('is-prev') || card.classList.contains('is-next')) {
+        e.preventDefault();
+        commitSelect(idx);
+      }
+    });
+  });
+
+  // 3. Scroll navigation over isometric tower or project pane
+  function handleWheelNavigation(e) {
+    if (Math.abs(e.deltaY) < 16 || e.ctrlKey) return;
+
+    const currentIdx = (previewIndex !== null) ? previewIndex : selectedIndex;
+
+    // Allow natural window scroll if at boundaries
+    if (e.deltaY < 0 && currentIdx === 0) return;
+    if (e.deltaY > 0 && currentIdx === towerFloors.length - 1) return;
+
+    e.preventDefault();
+
+    if (isScrolling) return;
+    isScrolling = true;
+
+    const step = e.deltaY > 0 ? 1 : -1;
+    const nextIdx = Math.max(0, Math.min(towerFloors.length - 1, currentIdx + step));
+
+    if (nextIdx !== currentIdx) {
+      commitSelect(nextIdx);
+    }
+
+    clearTimeout(scrollCooldownTimer);
+    scrollCooldownTimer = setTimeout(() => {
+      isScrolling = false;
+    }, 200);
+  }
+
+  if (towerWrapper) {
+    towerWrapper.addEventListener('wheel', handleWheelNavigation, { passive: false });
+  }
+  if (towerCardViewport) {
+    towerCardViewport.addEventListener('wheel', handleWheelNavigation, { passive: false });
+  }
+
+  // 4. Touch swipe navigation on mobile
+  let touchStartY = 0;
+  if (towerCardViewport) {
+    towerCardViewport.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    towerCardViewport.addEventListener('touchend', (e) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const diffY = touchStartY - touchEndY;
+      if (Math.abs(diffY) > 35) {
+        const currentIdx = (previewIndex !== null) ? previewIndex : selectedIndex;
+        if (diffY > 0 && currentIdx < towerFloors.length - 1) {
+          commitSelect(currentIdx + 1);
+        } else if (diffY < 0 && currentIdx > 0) {
+          commitSelect(currentIdx - 1);
+        }
+      }
+    }, { passive: true });
+  }
+
+  // 5. Keyboard Arrow navigation
+  if (tower) {
+    tower.addEventListener('keydown', (e) => {
+      const currentIdx = (previewIndex !== null) ? previewIndex : selectedIndex;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (currentIdx < towerFloors.length - 1) {
+          commitSelect(currentIdx + 1);
+          towerFloors[currentIdx + 1].focus();
+        }
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (currentIdx > 0) {
+          commitSelect(currentIdx - 1);
+          towerFloors[currentIdx - 1].focus();
+        }
+      }
+    });
+  }
+
+  // 6. Initialize measurements and layout
+  function initMetricsAndDisplay() {
+    measureCards();
+    updateDisplay(selectedIndex);
+  }
+
+  window.addEventListener('resize', () => {
+    measureCards();
+    updateDisplay(previewIndex !== null ? previewIndex : selectedIndex);
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMetricsAndDisplay);
+  } else {
+    initMetricsAndDisplay();
+  }
+  window.addEventListener('load', initMetricsAndDisplay);
+})();
 
